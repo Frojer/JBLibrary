@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="JBLibrary">
+      <UniqueIdentifier>{c327f277-abb7-419d-a571-bf913820634e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JBLibrary\Global">
+      <UniqueIdentifier>{3953c576-2ff3-478a-857e-fb55287b9a6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JBLibrary\Core">
+      <UniqueIdentifier>{89717466-28ff-44e8-9521-5cc255327904}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JBLibrary\Base">
+      <UniqueIdentifier>{85f98222-6f95-4784-8731-01e736a80767}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JBLibrary\Component">
+      <UniqueIdentifier>{6e120704-26a5-4309-af73-1d9f4bb3087f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="JBLibrary\Global\JBGLBIO.cpp">
+      <Filter>JBLibrary\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="JBLibrary\Global\JBGlobalFunc.cpp">
+      <Filter>JBLibrary\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="JBLibrary\Global\JBGLBFileLibrary.cpp">
+      <Filter>JBLibrary\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="JBLibrary\Global\JBGLBSystem.cpp">
+      <Filter>JBLibrary\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="JBLibrary\Global\JBGLBString.cpp">
+      <Filter>JBLibrary\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="JBLibrary\Core\JBCoreModule.cpp">
+      <Filter>JBLibrary\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="JBLibrary\Global\JBGLBMath.cpp">
+      <Filter>JBLibrary\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="JBLibrary\Global\JBGLBMemory.cpp">
+      <Filter>JBLibrary\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="JBLibrary\Base\JBBASWndProc.cpp">
+      <Filter>JBLibrary\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="JBLibrary\Base\JBBASObject.cpp">
+      <Filter>JBLibrary\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="JBLibrary\Base\JBBASComponent.cpp">
+      <Filter>JBLibrary\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="JBLibrary\Core\JBCORWindow.cpp">
+      <Filter>JBLibrary\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="JBLibrary\Core\JBCORLogWindow.cpp">
+      <Filter>JBLibrary\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="JBLibrary\Core\JBCORDraw.cpp">
+      <Filter>JBLibrary\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="JBLibrary\Core\JBCORRender.cpp">
+      <Filter>JBLibrary\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="JBLibrary\Global\JBGLBColor.cpp">
+      <Filter>JBLibrary\Global</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="JBLibrary\Global\JBGLBIO.h">
+      <Filter>JBLibrary\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="JBLibrary\Global\JBGlobalFunc.h">
+      <Filter>JBLibrary\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="JBLibrary\JBLinkLIB.hpp">
+      <Filter>JBLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="JBLibrary\Global\JBGLBFileLibrary.h">
+      <Filter>JBLibrary\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="JBLibrary\Global\JBGLBSystem.h">
+      <Filter>JBLibrary\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="JBLibrary\Core\JBCoreModule.h">
+      <Filter>JBLibrary\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="JBLibrary\Global\JBGLBMath.h">
+      <Filter>JBLibrary\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="JBLibrary\Global\JBGLBMemory.h">
+      <Filter>JBLibrary\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="JBLibrary\JBDefault.hpp">
+      <Filter>JBLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="JBLibrary\Base\JBBASWndProc.h">
+      <Filter>JBLibrary\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="JBLibrary\Base\JBBASObject.h">
+      <Filter>JBLibrary\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="JBLibrary\Base\JBBASComponent.h">
+      <Filter>JBLibrary\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="JBLibrary\Global\JBGlobalMacro.hpp">
+      <Filter>JBLibrary\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="JBLibrary\Core\JBCORWindow.h">
+      <Filter>JBLibrary\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="JBLibrary\Core\JBCORLogWindow.h">
+      <Filter>JBLibrary\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="JBLibrary\Core\JBCORDraw.h">
+      <Filter>JBLibrary\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="JBLibrary\Global\JBGLBString.h">
+      <Filter>JBLibrary\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="JBLibrary\Global\JBGLBCustomString.hpp">
+      <Filter>JBLibrary\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="JBLibrary\Global\JBGLBHash.hpp">
+      <Filter>JBLibrary\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="JBLibrary\Core\JBCORRender.h">
+      <Filter>JBLibrary\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="JBLibrary\Global\JBGLBColor.h">
+      <Filter>JBLibrary\Global</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Game.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="game.ico">
+      <Filter>Resources</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
