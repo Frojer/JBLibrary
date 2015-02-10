@@ -1,5 +1,11 @@
 ﻿#pragma once
 
+// output
+#define __STR2__(x) #x
+#define __STR1__(x) __STR2__(x)
+#define __LOC__ __FILE__ "("__STR1__(__LINE__)") : Warning Msg: "
+//
+
 // for debug
 #ifdef _DEBUG
 #define _SETFOCUS_LOG { if(JBL::glb_instLog)JBL::SYSTEM::glb_setFocus(JBL::glb_instLog->getHWND()); if(JBL::glb_instWindow)JBL::SYSTEM::glb_setFocus(JBL::glb_instWindow->getHWND()); }
