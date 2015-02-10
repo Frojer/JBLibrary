@@ -164,6 +164,7 @@ bool FILELIBRARY::FileLibrary::ins_loadFile(){
 }
 
 
+#ifdef _DEBUG
 /// @brief 클래스를 초기화 합니다.
 /// @param file 파일 경로(와이드바이트)
 /// @return 읽기 성공 여부
@@ -357,7 +358,7 @@ bool FILELIBRARY::LibGenerator::ins_editLib(
         }
     }
 
-    _LOG_I((_STRING("JBL::FILELIBRARY::LibGenerator: no changed items. ") +
+    _LOG_I((_STRING("JBL::FILELIBRARY::LibGenerator: no changed item. ") +
         "\"" + libRoute + "\"."
         ).c_str());
     return true;
@@ -454,3 +455,4 @@ bool FILELIBRARY::LibGenerator::ins_genLib(
 
     return true;
 }
+#endif

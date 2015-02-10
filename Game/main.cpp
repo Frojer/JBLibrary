@@ -5,7 +5,9 @@
 using namespace JBL;
 using namespace JBL::SYSTEM;
 
+#ifdef _DEBUG
 bool genFile(const char* rawRoute, const char* genRoute);
+#endif
 
 _INT APIENTRY _tWinMain(HINSTANCE hInst, HINSTANCE prevInst, LPTSTR cmdLine, _INT showCmd){
     UNREFERENCED_PARAMETER(prevInst);
@@ -65,6 +67,7 @@ _INT APIENTRY _tWinMain(HINSTANCE hInst, HINSTANCE prevInst, LPTSTR cmdLine, _IN
     return (_INT)msg.wParam;
 }
 
+#ifdef _DEBUG
 bool genFile(const char* rawRoute, const char* genRoute){
     _UNIQUE_PTR<FILELIBRARY::LibGenerator> f(_NEW<FILELIBRARY::LibGenerator>(glb_blendCode));
 
@@ -103,3 +106,4 @@ bool genFile(const char* rawRoute, const char* genRoute){
     ::FindClose(hFile);
     return true;
 }
+#endif
