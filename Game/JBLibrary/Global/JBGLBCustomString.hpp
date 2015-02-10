@@ -161,7 +161,7 @@ namespace JBL{
             inline bool operator<=(const T* str)const{ return ins_strcmp(ins_str, str) != 1; }
             inline bool operator<=(const customString& str)const{ return ins_strcmp(ins_str, str.ins_str) != 1; }
         public:
-            /// @brief NULL문자 이전까지의 길이를 반환합니다.
+            /// @brief 문자열의 길이를 반환합니다.
             /// @return 길이
             inline const _SIZE_T length()const{ return ins_length; }
             /// @brief 실제 할당된 크기를 반환합니다.
