@@ -30,10 +30,6 @@ bool IO::FILE_IO::ins_init(const wchar_t* fileName){
             ++namePtr;
             ++fileName;
         }
-        while (*namePtr != L'.'){
-            *namePtr = towlower(*namePtr);
-            --namePtr;
-        }
     }
 
     if (!ins_state.read)glb_makeDir(ins_fileName, strLen);
