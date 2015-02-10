@@ -20,7 +20,7 @@ namespace JBL{
         JBBASWndProc();
         virtual ~JBBASWndProc();
     protected:
-        /// @brief 가장 마지막에 생성 된 객체의 윈도우 프로세스를 반환합니다. 윈도우 초기화 시 대입되는 것을 권장합니다.
+        /// @brief 가장 마지막에 생성된 객체의 윈도우 프로세스를 반환합니다. 윈도우 초기화 시 대입되는 것을 권장합니다.
         static inline LRESULT CALLBACK ins_firstProc(HWND hWnd, _UINT msg, WPARAM wParam, LPARAM lParam){
             return (*ins_beginItr)->ins_curProc(hWnd, msg, wParam, lParam);
         }
