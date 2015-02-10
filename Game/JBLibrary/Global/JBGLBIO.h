@@ -87,7 +87,7 @@ namespace JBL{
             /// @param data 기록할 데이터
             /// @param isFlip 바이트 뒤집기 여부
             /// @return 동작 성공 여부
-            inline bool put(_BYTE data, const bool isFlip = false){ return putc(isFlip ? glb_getReverseByte(data) : data, ins_file) == data; }
+            inline bool put(_BYTE data, const bool isFlip = false){ auto c = isFlip ? glb_getReverseByte(data) : data; return putc(c, ins_file) == c; }
             /// @brief 현재 위치로부터 1바이트 크기만큼 데이터를 읽어옵니다.
             /// @param isFlip 바이트 뒤집기 여부
             /// @return 읽어올 데이터(EOF일 경우 오류)
