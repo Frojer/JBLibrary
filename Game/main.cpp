@@ -43,10 +43,10 @@ _INT APIENTRY _tWinMain(HINSTANCE hInst, HINSTANCE prevInst, LPTSTR cmdLine, _IN
 
     glb_instRender.reset(_NEW<JBCORRender>(glb_instDraw.get()));
     if (!glb_instRender){
-        glb_infoMsg(IF_ERROR, L"MAIN: failed to initialize JBCORRenderer.");
+        glb_infoMsg(IF_ERROR, L"MAIN: failed to initialize JBCORRender.");
         return -1;
     }
-    _LOG_S(L"MAIN: succeeded to initialize JBCORRenderer.");
+    _LOG_S(L"MAIN: succeeded to initialize JBCORRender.");
 
     MSG msg;
     ZeroMemory(&msg, sizeof msg);
@@ -58,7 +58,7 @@ _INT APIENTRY _tWinMain(HINSTANCE hInst, HINSTANCE prevInst, LPTSTR cmdLine, _IN
         if (msg.message == WM_QUIT)break;
         else{
             if (!glb_instRender->update()){
-                glb_infoMsg(IF_ERROR, L"MAIN: failed to update JBCORRenderer.");
+                glb_infoMsg(IF_ERROR, L"MAIN: failed to update JBCORRender.");
                 return -1;
             }
         }

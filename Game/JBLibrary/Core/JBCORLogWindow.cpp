@@ -115,7 +115,7 @@ void JBCORLogWindow::ins_addLog(const _WSTRING& str, const char attribute){
 
 
         _new.clear();
-        for (_SIZE_T i = 0, e = str.length(); i < e; ++i){
+        for (_SIZE_T i = 0; i < str.length(); ++i){
             if (str[i] == L'\n')_new += L"\r\n";
             else if (str[i] == L'\\')_new += L'/';
             else _new += str[i];
