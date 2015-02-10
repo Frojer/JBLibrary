@@ -3,9 +3,12 @@
 #ifdef _DEBUG
 #include<map>
 #endif
+
 #include<vector>
 #include<boost/unordered_map.hpp>
 #include<boost/functional/hash.hpp>
+#include"JBGLBHash.hpp"
+#include"JBGLBIO.h"
 #include"JBGLBString.h"
 
 namespace JBL{
