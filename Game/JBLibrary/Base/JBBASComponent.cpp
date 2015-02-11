@@ -5,7 +5,9 @@
 using namespace JBL;
 using namespace JBL::SYSTEM;
 
-JBBASComponent::JBBASComponent(){}
+JBBASComponent::JBBASComponent(){
+    ins_owner = nullptr;
+}
 JBBASComponent::~JBBASComponent(){
     ins_owner = nullptr;
 }
