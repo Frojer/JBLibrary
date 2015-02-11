@@ -15,12 +15,6 @@ namespace JBL{
     namespace FILELIBRARY{
         typedef boost::uint64_t HashSize;
 
-#ifdef _DEBUG
-        typedef _MAP<HashSize, _QWORD> fileLibraryTable;
-        typedef _MAP<HashSize, FILETIME> fileDateTable;
-        typedef _MAP<HashSize, _STRING> fileGeneratorTable;
-#endif
-
 
         /// @brief 원본 바이트에서 add만큼 더한 값을 1byte크기로 순환하여 반환합니다.
         /// @param raw 원본 바이트
@@ -91,7 +85,13 @@ namespace JBL{
             bool ins_loadFile();
         };
 
+
 #ifdef _DEBUG
+        typedef _MAP<HashSize, _QWORD> fileLibraryTable;
+        typedef _MAP<HashSize, FILETIME> fileDateTable;
+        typedef _MAP<HashSize, _STRING> fileGeneratorTable;
+
+
         /// @brief 라이브러리 캐시를 위한 클래스
         /// @details 정보 파일은 다음과 같은 순서로 구성됩니다.
         /// @details 전체 파일 개수
