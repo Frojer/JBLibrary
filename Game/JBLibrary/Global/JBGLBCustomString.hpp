@@ -487,8 +487,8 @@ namespace JBL{
                 return *this;
             }
             customString& operator+=(const T* str){
-                _SIZE_T rawLen = ins_length;
-                _SIZE_T tarLen = ins_strlen(str);
+                auto rawLen = ins_length;
+                auto tarLen = ins_strlen(str);
                 if (!(rawLen + tarLen))return *this;
 #ifdef _DEBUG
                 if (!resize(rawLen + tarLen + 1))throw _ERROR_EXCEPTION(L"JBL::STRING::customString: failed to allocate memory.");
@@ -500,8 +500,8 @@ namespace JBL{
                 return *this;
             }
             customString& operator+=(const customString& str){
-                _SIZE_T rawLen = ins_length;
-                _SIZE_T tarLen = str.ins_length;
+                auto rawLen = ins_length;
+                auto tarLen = str.ins_length;
                 if (!(rawLen + tarLen))return *this;
 #ifdef _DEBUG
                 if (!resize(rawLen + tarLen + 1))throw _ERROR_EXCEPTION(L"JBL::STRING::customString: failed to allocate memory.");
