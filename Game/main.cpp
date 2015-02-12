@@ -85,7 +85,7 @@ bool genFile(const char* rawRoute, const char* genRoute){
             strFilePath = _STRING(rawRoute) + "\\" + FileInformation.cFileName;
 
             strExtension = FileInformation.cFileName;
-            if (strExtension.rfind('.') != STRING_NPOS){
+            if (strExtension.rfind('.') != _STRING_NPOS){
                 strExtension = _MOVE(strExtension.substr(strExtension.rfind('.') + 1));
             }
             else strExtension = "";

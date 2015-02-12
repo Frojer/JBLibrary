@@ -94,7 +94,7 @@ template<typename T> using _UNIQUE_PTR_M = _UNIQUE_PTR < T, _FUNC<void(T*)> >;
 //
 
 // string
-#define STRING_NPOS ((_SIZE_T)-1)
+#define _STRING_NPOS ((_SIZE_T)(-1))
 #define _STRING JBL::STRING::customString<char>
 #define _WSTRING JBL::STRING::customString<wchar_t>
 //

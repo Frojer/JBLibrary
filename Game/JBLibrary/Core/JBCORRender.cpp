@@ -127,7 +127,7 @@ JBCORRender::~JBCORRender(){
 }
 
 bool JBCORRender::update(){
-    static COLOR::RGBA_32BIT backColor = { 0.f, 0.f, 0.f, 1.f };
+    static COLOR::RGBA_32BIT backColor(0.f, 0.f, 0.f, 1.f);
 
 
     // begin

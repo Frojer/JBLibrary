@@ -241,7 +241,7 @@ bool FILELIBRARY::LibGenerator::generate(const char* read, const char* write){
     if (ins_searchDirectory(fileTable, fileLog, genTable, read, read))return false;
 
     _STRING rawRead = read;
-    _STRING fileName = _MOVE(rawRead.rfind('\\') == STRING_NPOS ? rawRead : rawRead.substr(rawRead.rfind('\\') + 1));
+    _STRING fileName = _MOVE(rawRead.rfind('\\') == _STRING_NPOS ? rawRead : rawRead.substr(rawRead.rfind('\\') + 1));
     _STRING libRoute = _STRING(write) + "\\" + _MOVE(fileName);
 
     if (_access_s(libRoute.c_str(), 0)){

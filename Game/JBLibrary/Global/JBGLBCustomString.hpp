@@ -238,7 +238,7 @@ namespace JBL{
             /// @param pos 탐색 시작 위치
             /// @return 최초로 c가 발견되는 위치의 인덱스
             _SIZE_T find(const T c, const _SIZE_T pos)const{
-                if (!ins_str)return STRING_NPOS;
+                if (!ins_str)return _STRING_NPOS;
 
                 _SIZE_T i = pos;
                 const T* p = ins_str + pos;
@@ -247,7 +247,7 @@ namespace JBL{
                     ++i;
                     ++p;
                 }
-                return STRING_NPOS;
+                return _STRING_NPOS;
             }
             /// @brief 문자열을 처음부터 순방향으로 탐색하며 c가 발견되는 위치를 찾습니다.
             /// @param c 찾을 문자열
@@ -260,7 +260,7 @@ namespace JBL{
             /// @param pos 탐색 시작 위치
             /// @return 최초로 c가 발견되는 위치의 인덱스
             _SIZE_T rfind(const T c, const _SIZE_T pos)const{
-                if (!ins_str)return STRING_NPOS;
+                if (!ins_str)return _STRING_NPOS;
 
                 _SIZE_T i = pos;
                 const T* p = ins_str + i;
@@ -270,13 +270,13 @@ namespace JBL{
                     --i;
                 }
                 if (*p == c)return i;
-                return STRING_NPOS;
+                return _STRING_NPOS;
             }
             /// @brief 문자열을 끝부터 역방향으로 탐색하며 c가 발견되는 위치를 찾습니다.
             /// @param c 찾을 문자열
             /// @param pos 탐색 시작 위치
             /// @return 최초로 c가 발견되는 위치의 인덱스
-            inline _SIZE_T rfind(const T c)const{ if (!ins_length)return STRING_NPOS; return rfind(c, ins_length - 1); }
+            inline _SIZE_T rfind(const T c)const{ if (!ins_length)return _STRING_NPOS; return rfind(c, ins_length - 1); }
         public:
             /// @brief 문자열의 begin인덱스부터 len만큼까지를 반환합니다.
             /// @param begin 시작 위치
