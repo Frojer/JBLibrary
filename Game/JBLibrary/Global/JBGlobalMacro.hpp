@@ -48,6 +48,8 @@
 #define _DWORD unsigned long
 #define _QWORD unsigned long long
 
+#define _DECLVAL boost::declval
+
 #define _MOVE boost::move
 #define _FORWARD boost::forward
 

@@ -193,6 +193,7 @@
     <ClInclude Include="JBLibrary\Core\JBCORRender.h" />
     <ClInclude Include="JBLibrary\Core\JBCORWindow.h" />
     <ClInclude Include="JBLibrary\Global\JBGLBColor.h" />
+    <ClInclude Include="JBLibrary\Global\JBGLBCustomFloat.hpp" />
     <ClInclude Include="JBLibrary\Global\JBGLBCustomString.hpp" />
     <ClInclude Include="JBLibrary\Global\JBGLBFileLibrary.h" />
     <ClInclude Include="JBLibrary\Global\JBGLBHash.hpp" />

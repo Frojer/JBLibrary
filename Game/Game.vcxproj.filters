@@ -139,6 +139,9 @@
     <ClInclude Include="JBLibrary\Global\JBGLBColor.h">
       <Filter>JBLibrary\Global</Filter>
     </ClInclude>
+    <ClInclude Include="JBLibrary\Global\JBGLBCustomFloat.hpp">
+      <Filter>JBLibrary\Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">

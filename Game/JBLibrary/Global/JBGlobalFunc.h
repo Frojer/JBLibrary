@@ -4,6 +4,7 @@
 
 #include<windows.h>
 
+#include<boost/utility/declval.hpp>
 #include<boost/function.hpp>
 #include<boost/bind.hpp>
 
