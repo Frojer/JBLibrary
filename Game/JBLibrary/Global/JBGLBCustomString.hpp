@@ -60,7 +60,7 @@ namespace JBL{
                 }
 
                 _SIZE_T i = 0;
-                while (*str1 != (T)0 && *str2 != (T)0 && i < n){
+                while (i < n){
                     if (*str1 > *str2)return 1;
                     if (*str1 < *str2)return -1;
                     ++i;
@@ -95,7 +95,7 @@ namespace JBL{
                 if (!dest || !src)return 0;
 
                 _SIZE_T i = 0;
-                while (*src != (T)0 && i < n){
+                while (i < n){
                     *dest = *src;
                     ++i;
                     ++dest;
@@ -128,7 +128,7 @@ namespace JBL{
                 if (!str)return 0;
 
                 _SIZE_T i = 0;
-                while (*str != (T)0 && i < n){
+                while (i < n){
                     *str = c;
                     ++i;
                     ++str;
@@ -171,8 +171,24 @@ namespace JBL{
             /// @return 문자열
             inline const T* c_str()const{ return ins_str; }
         public:
+            /// @brief 문자열 끝에 원소를 추가합니다.
+            /// @param c 추가할 문자
+            inline void push_back(const T c){
+                if (ins_length + 1 <= ins_capacitySz){ ins_str[ins_length] = c; ins_str[++ins_length] = (T)0; }
+#ifdef _DEBUG
+                else throw _ERROR_EXCEPTION(L"JBL::STRING::customString: out of index.");
+#endif
+            }
+            /// @brief 문자열 끝의 원소 하나를 제거합니다.
+            inline void pop_back(){
+                if (ins_length){ ins_str[--ins_length] = (T)0; }
+#ifdef _DEBUG
+                else throw _ERROR_EXCEPTION(L"JBL::STRING::customString: out of index.");
+#endif
+            }
+        public:
             /// @brief 문자열을 NULL문자로 초기화 합니다.
-            inline void clear(){ ins_length = 0; ins_strset(ins_str, (T)0); }
+            inline void clear(){ ins_length = 0; ins_strset(ins_str, (T)0, ins_capacitySz); }
             /// @brief 문자열의 실제 크기를 설정합니다. 현재 할당받은 크기보다 큰 경우에만 동작합니다.
             /// @param n 새로 할당할 크기
             /// @return 동작 성공 여부
@@ -343,6 +359,7 @@ namespace JBL{
                 ins_capacitySz = 0;
                 ins_str = nullptr;
 #ifdef _DEBUG
+                if (len > ins_strlen(str))throw _ERROR_EXCEPTION(L"JBL::STRING::customString: out of index.");
                 if (!ins_sizing(len + 1))throw _ERROR_EXCEPTION(L"JBL::STRING::customString: failed to allocate memory.");
 #else
                 ins_sizing(len + 1);
@@ -370,6 +387,7 @@ namespace JBL{
                     ins_capacitySz = 0;
                     ins_str = nullptr;
 #ifdef _DEBUG
+                    if(len > str.ins_capacitySz)throw _ERROR_EXCEPTION(L"JBL::STRING::customString: out of index.");
                     if (!ins_sizing(len + 1))throw _ERROR_EXCEPTION(L"JBL::STRING::customString: failed to allocate memory.");
 #else
                     ins_sizing(len + 1);
