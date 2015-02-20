@@ -93,17 +93,15 @@ bool FILELIBRARY::FileLibrary::getData(const HashSize data, _VECTOR<_BYTE>& _out
     _out = _MOVE(_VECTOR<_BYTE>(itr->second.second));
     _QWORD i = 0;
     short cycle = 1;
-    _BYTE cur;
     while (i < itr->second.second){
         {
             auto c = inpFile->get(true);
             if (c == EOF)return false;
-            cur = _BYTE(c);
+            _out[i] = _BYTE(c);
         }
 
-        cur ^= cycle;
-        cur = glb_cycleByte(cur, -cycle);
-        _out[i] = cur;
+        _out[i] ^= cycle;
+        _out[i] = glb_cycleByte(_out[i], -cycle);
 
         if (!(cycle % 5)){
             _SWAP(_out[i], _out[i - 2]);
