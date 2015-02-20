@@ -55,6 +55,8 @@
 
 #define _FUNC boost::function
 
+#define _SWAP boost::swap
+
 #define _PAIR std::pair
 #define _MAKE_PAIR std::make_pair
 

@@ -8,7 +8,7 @@ namespace JBL{
     static const _BYTE glb_blendCode = 17;
 
     /// 각종 설정 값이 저장된 비트 테이블 입니다.
-    static std::bitset<2> glb_state(0x01); // 초기 값: 10(2)(빅엔디안)
+    static std::bitset<2> glb_state(0x01); // 초기 값: 10(2)(리틀엔디안)
 #define JBL_STATE_VSYNC 0 ///< 수직 동기화 여부를 설정합니다.
 #define JBL_STATE_FULLSCREEN 1 ///< 풀스크린 여부를 설정합니다.
 

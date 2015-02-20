@@ -106,12 +106,12 @@ bool FILELIBRARY::FileLibrary::getData(const HashSize data, _VECTOR<_BYTE>& _out
         _out[i] = cur;
 
         if (!(cycle % 5)){
-            std::swap(_out[i], _out[i - 2]);
-            std::swap(_out[i - 4], _out[i - 3]);
+            _SWAP(_out[i], _out[i - 2]);
+            _SWAP(_out[i - 4], _out[i - 3]);
         }
 
         if (cycle >= ins_blendCode){
-            std::swap(_out[i], _out[i - ins_blendCode + 1]);
+            _SWAP(_out[i], _out[i - ins_blendCode + 1]);
 
             cycle = 1;
         }
@@ -419,12 +419,12 @@ bool FILELIBRARY::LibGenerator::ins_genLib(
         short cycle = 1;
         while (i2 < i->second){
             if ((i2 == 0 || ((i2 + 1) % ins_blendCode) == 0) && (i2 + ins_blendCode - 1 < i->second)){
-                std::swap(tmp[i2], tmp[i2 + ins_blendCode - 1]);
+                _SWAP(tmp[i2], tmp[i2 + ins_blendCode - 1]);
             }
 
             if (!(cycle % 5)){
-                std::swap(tmp[i2], tmp[i2 - 2]);
-                std::swap(tmp[i2 - 4], tmp[i2 - 3]);
+                _SWAP(tmp[i2], tmp[i2 - 2]);
+                _SWAP(tmp[i2 - 4], tmp[i2 - 3]);
             }
 
             if (cycle >= ins_blendCode)cycle = 1;
