@@ -53,8 +53,8 @@ JBCORDraw::JBCORDraw(JBCORWindow* windowInst) : JBBASWndProc(){
     _LOG_S(L"JBL::JBCORDraw: succeeded to call IDXGIOutput::GetDisplayModeList(fill).");
 
     // 해상도에 맞는 화면 갱신 비를 구함
-    decltype(displayModeList->RefreshRate.Numerator) numerator = 0;
-    decltype(displayModeList->RefreshRate.Denominator) denominator = 0;
+    auto numerator = decltype(displayModeList->RefreshRate.Numerator){0};
+    auto denominator = decltype(displayModeList->RefreshRate.Denominator){0};
     {
         auto modeIterator = displayModeList;
         auto i = decltype(numModes){0};
