@@ -7,8 +7,8 @@ namespace JBL{
         /// @brief 문자열 클래스
         template<typename T> class customString{
         private:
-            _SIZE_T ins_capacitySz; ///< 실제 할당 공간
-            _SIZE_T ins_length; ///< NULL문자 이전까지의 길이
+            _SIZE_T ins_capacitySz; ///< 전체 할당 공간
+            _SIZE_T ins_length; ///< 문자열의 길이
             T* ins_str; ///< 문자열 시작 포인터
         private:
             /// @brief NULL문자 이전까지의 길이를 반환합니다.
@@ -164,7 +164,7 @@ namespace JBL{
             /// @brief 문자열의 길이를 반환합니다.
             /// @return 길이
             inline const _SIZE_T length()const{ return ins_length; }
-            /// @brief 실제 할당된 크기를 반환합니다.
+            /// @brief 전체 할당된 크기를 반환합니다.
             /// @return 크기
             inline const _SIZE_T capacitySize()const{ return ins_capacitySz; }
             /// @brief 문자열의 포인터형을 반환합니다.
