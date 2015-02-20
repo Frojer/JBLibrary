@@ -7,8 +7,6 @@
 #pragma comment(lib, "d3d11.lib")
 
 #ifdef _WIN64
-#pragma comment(lib, "../libLink/x64/spine-c.lib")
-
 #ifdef _DEBUG
 #pragma comment(lib, "comctl32.lib")
 #pragma comment(lib, "d3dx11d.lib")
@@ -84,8 +82,6 @@
 #pragma comment(lib, "../libLink/x64/libboost_wserialization-vc120-mt-1_57.lib")
 #endif
 #else
-#pragma comment(lib, "../libLink/x86/spine-c.lib")
-
 #ifdef _DEBUG
 #pragma comment(lib,  "comctl32.lib")
 #pragma comment(lib, "d3dx11d.lib")
