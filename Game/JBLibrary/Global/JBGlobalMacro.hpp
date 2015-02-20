@@ -67,6 +67,7 @@ template<typename T> using _UNIQUE_PTR_M = _UNIQUE_PTR < T, _FUNC<void(T*)> >;
 #define _SHARED_PTR boost::shared_ptr
 #define _MAKE_SHARED boost::make_shared
 
+#define _BITSET std::bitset
 #define _FORWARD_LIST std::forward_list
 #define _LIST std::list
 #define _VECTOR std::vector
