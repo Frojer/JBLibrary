@@ -77,8 +77,6 @@ bool genFile(const char* rawRoute, const char* genRoute){
     WIN32_FIND_DATAA FileInformation;
     HANDLE hFile = ::FindFirstFileA(strPattern.c_str(), &FileInformation);
 
-    if (hFile == INVALID_HANDLE_VALUE)return false;
-
     do{
         if (FileInformation.cFileName[0] != '.'){
             strFilePath.clear();
@@ -91,6 +89,7 @@ bool genFile(const char* rawRoute, const char* genRoute){
             else strExtension = "";
 
             if (
+                (hFile != INVALID_HANDLE_VALUE) &&
                 (strExtension == "jbl") &&
                 (FileInformation.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) &&
                 (!(FileInformation.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN))

@@ -269,55 +269,56 @@ _DWORD FILELIBRARY::LibGenerator::ins_searchDirectory(
     strPattern = refcstrRootDirectory + "\\*.*";
 
     hFile = ::FindFirstFileA(strPattern.c_str(), &FileInformation);
-    if (hFile != INVALID_HANDLE_VALUE){
-        do{
-            if (FileInformation.cFileName[0] != '.'){
-                strFilePath.clear();
-                strFilePath = refcstrRootDirectory + "\\" + FileInformation.cFileName;
+    do{
+        if (
+            (hFile != INVALID_HANDLE_VALUE) &&
+            (FileInformation.cFileName[0] != '.')
+            ){
+            strFilePath.clear();
+            strFilePath = refcstrRootDirectory + "\\" + FileInformation.cFileName;
 
-                if (FileInformation.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY){
-                    _INT iRC = ins_searchDirectory(refvecFiles, libLog, refvecList, strFilePath, defDir);
-                    if (iRC){
-                        ::FindClose(hFile);
-                        return iRC;
-                    }
-                }
-                else if (!(FileInformation.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN)){
-                    auto str = _MOVE(strFilePath.substr(defDir.length() + 1));
-                    auto hash = _PATH2HASH_M(str.c_str(), str.length());
-
-                    for(auto i : refvecFiles){
-                        if (i.first == hash){
-                            ::FindClose(hFile);
-                            glb_infoMsg(
-                                IF_ERROR, (
-                                _STRING("JBL::FILELIBRARY::LibGenerator: the overlapping hash key is exist.\n") +
-                                +"\"" + refvecList[hash] + "\", \"" + str + "\""
-                                ).c_str()
-                                );
-                            return 0xffffffff;
-                        }
-                    }
-
-                    refvecFiles.emplace(
-                        hash,
-                        _QWORD((_QWORD)FileInformation.nFileSizeHigh << 32 | FileInformation.nFileSizeLow)
-                        );
-                    libLog.emplace(
-                        hash,
-                        FileInformation.ftLastWriteTime
-                        );
-
-                    refvecList.emplace(hash, strFilePath);
+            if (FileInformation.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY){
+                _INT iRC = ins_searchDirectory(refvecFiles, libLog, refvecList, strFilePath, defDir);
+                if (iRC){
+                    ::FindClose(hFile);
+                    return iRC;
                 }
             }
-        } while (::FindNextFileA(hFile, &FileInformation) == TRUE);
+            else if (!(FileInformation.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN)){
+                auto str = _MOVE(strFilePath.substr(defDir.length() + 1));
+                auto hash = _PATH2HASH_M(str.c_str(), str.length());
 
-        ::FindClose(hFile);
+                for (auto i : refvecFiles){
+                    if (i.first == hash){
+                        ::FindClose(hFile);
+                        glb_infoMsg(
+                            IF_ERROR, (
+                            _STRING("JBL::FILELIBRARY::LibGenerator: the overlapping hash key is exist.\n") +
+                            +"\"" + refvecList[hash] + "\", \"" + str + "\""
+                            ).c_str()
+                            );
+                        return 0xffffffff;
+                    }
+                }
 
-        _DWORD dwError = ::GetLastError();
-        if (dwError != ERROR_NO_MORE_FILES)return dwError;
-    }
+                refvecFiles.emplace(
+                    hash,
+                    _QWORD((_QWORD)FileInformation.nFileSizeHigh << 32 | FileInformation.nFileSizeLow)
+                    );
+                libLog.emplace(
+                    hash,
+                    FileInformation.ftLastWriteTime
+                    );
+
+                refvecList.emplace(hash, strFilePath);
+            }
+        }
+    } while (::FindNextFileA(hFile, &FileInformation) == TRUE);
+
+    ::FindClose(hFile);
+
+    _DWORD dwError = ::GetLastError();
+    if (dwError != ERROR_NO_MORE_FILES)return dwError;
 
     return 0;
 }
