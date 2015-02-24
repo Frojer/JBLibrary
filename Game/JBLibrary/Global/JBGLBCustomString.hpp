@@ -215,6 +215,10 @@ namespace JBL{
                 _FREE(tmp);
                 return false;
             }
+            /// @brief 문자열의 길이를 다시 구합니다.
+            inline void relength(){
+                ins_length = ins_strlen(ins_str);
+            }
         public:
             /// @brief 문자열의 ind번째 원소를 반환합니다.
             /// @param ind 인덱스
