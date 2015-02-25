@@ -43,7 +43,7 @@
 #pragma comment(lib, "../libLink/x64/libboost_timer-vc120-mt-gd-1_57.lib")
 #pragma comment(lib, "../libLink/x64/libboost_unit_test_framework-vc120-mt-gd-1_57.lib")
 #pragma comment(lib, "../libLink/x64/libboost_wave-vc120-mt-gd-1_57.lib")
-#pragma comment(lib, "../libLink/x64/libboost_wserialization-vc120-mt-gd-1_57")
+#pragma comment(lib, "../libLink/x64/libboost_wserialization-vc120-mt-gd-1_57.lib")
 #else
 #pragma comment(lib, "d3dx11.lib")
 #pragma comment(lib, "d3dx10.lib")
@@ -118,7 +118,7 @@
 #pragma comment(lib, "../libLink/x86/libboost_timer-vc120-mt-gd-1_57.lib")
 #pragma comment(lib, "../libLink/x86/libboost_unit_test_framework-vc120-mt-gd-1_57.lib")
 #pragma comment(lib, "../libLink/x86/libboost_wave-vc120-mt-gd-1_57.lib")
-#pragma comment(lib, "../libLink/x86/libboost_wserialization-vc120-mt-gd-1_57")
+#pragma comment(lib, "../libLink/x86/libboost_wserialization-vc120-mt-gd-1_57.lib")
 #else
 #pragma comment(lib, "d3dx11.lib")
 #pragma comment(lib, "d3dx10.lib")
