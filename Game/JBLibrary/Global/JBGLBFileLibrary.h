@@ -13,7 +13,7 @@
 
 namespace JBL{
     namespace FILELIBRARY{
-        typedef boost::uint64_t HashSize;
+        typedef _QWORD HashSize;
 
 
         /// @brief 원본 바이트에서 add만큼 더한 값을 1byte크기로 순환하여 반환합니다.

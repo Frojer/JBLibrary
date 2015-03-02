@@ -38,7 +38,7 @@ _INT SYSTEM::glb_infoMsg(const MESSAGE_TYPE type, const char* msg){
     er += msg;
     OutputDebugStringA(er.c_str());
 #endif
-    return MessageBoxA(nullptr, msg, "JBL::MESSAGE", flag);
+    return MessageBoxA(nullptr, msg, "JBL::Message", flag);
 }
 _INT SYSTEM::glb_infoMsg(const MESSAGE_TYPE type, const wchar_t* msg){
     _UINT flag;
@@ -73,7 +73,7 @@ _INT SYSTEM::glb_infoMsg(const MESSAGE_TYPE type, const wchar_t* msg){
     er += msg;
     OutputDebugStringW(er.c_str());
 #endif
-    return MessageBoxW(nullptr, msg, L"JBL::MESSAGE", flag);
+    return MessageBoxW(nullptr, msg, L"JBL::Message", flag);
 }
 
 bool SYSTEM::glb_makeDir(const char* path, const _SIZE_T len){
@@ -166,6 +166,6 @@ POINT SYSTEM::glb_getScreenSize(){
 }
 
 void SYSTEM::glb_setFocus(const HWND& hWnd){
-    ::SetFocus(hWnd);
-    ::SetForegroundWindow(hWnd);
+    SetFocus(hWnd);
+    SetForegroundWindow(hWnd);
 }

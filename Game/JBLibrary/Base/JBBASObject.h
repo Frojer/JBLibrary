@@ -5,6 +5,8 @@
 
 namespace JBL{
     class JBBASComponent;
+
+    /// @brief 게임 오브젝트
     class JBBASObject{
     private:
         typedef _UNORDERED_MAP<_DWORD, JBBASComponent*, HASH::hashedKeyHasher<_DWORD>> ComponentMap;

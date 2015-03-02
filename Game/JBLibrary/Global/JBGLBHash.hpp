@@ -30,9 +30,9 @@ namespace JBL{
         /// @param s 원본 문자열
         /// @param len 원본 문자열의 길이
         /// @return 해쉬 값
-        extern inline boost::uint64_t glb_boostHash(const char* s, const _SIZE_T len){
-            boost::uint64_t h = 0;
-            boost::uint32_t h2 = 0;
+        extern inline _QWORD glb_boostHash(const char* s, const _SIZE_T len){
+            _QWORD h = 0;
+            _DWORD h2 = 0;
 
             for (auto i = decltype(len){0}; i < len; ++i){
                 h2 ^=

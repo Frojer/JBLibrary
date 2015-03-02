@@ -58,13 +58,13 @@ JBCORLogWindow::JBCORLogWindow(const HINSTANCE& hInst){
         nullptr,
         ins_mainProc
         );
-    if (!ins_thisHwnd)throw _ERROR_EXCEPTION(L"JBL::JBCORLogWindow: failed to call CreateDialog.");
+    if (!ins_thisHwnd)throw _ERROR_EXCEPTION(L"JBL::JBCORLogWindow::JBCORLogWindow: failed to call CreateDialog.");
 
     listStringHwnd = GetDlgItem(ins_thisHwnd, IDC_LIST);
-    if (!listStringHwnd)throw _ERROR_EXCEPTION(L"JBL::JBCORLogWindow: failed to call GetDlgItem(IDC_LIST).");
+    if (!listStringHwnd)throw _ERROR_EXCEPTION(L"JBL::JBCORLogWindow::JBCORLogWindow: failed to call GetDlgItem(IDC_LIST).");
 
     listNumHwnd = GetDlgItem(ins_thisHwnd, IDC_LISTNUM);
-    if (!listNumHwnd)throw _ERROR_EXCEPTION(L"JBL::JBCORLogWindow: failed to call GetDlgItem(IDC_LISTNUM).");
+    if (!listNumHwnd)throw _ERROR_EXCEPTION(L"JBL::JBCORLogWindow::JBCORLogWindow: failed to call GetDlgItem(IDC_LISTNUM).");
 
     ShowWindow(ins_thisHwnd, SW_SHOW);
 }
@@ -111,6 +111,7 @@ void JBCORLogWindow::ins_addLog(const _WSTRING& str, const char attribute){
 
         auto len = _new.length() + 1;
         add.num = _ALLOC<wchar_t>(len);
+        if (!add.num)throw _ERROR_EXCEPTION(L"JBL::JBCORLogWindow::ins_addLog: failed to allocate memory.");
         wcscpy_s(add.num, len, _new.c_str());
 
 
@@ -123,6 +124,7 @@ void JBCORLogWindow::ins_addLog(const _WSTRING& str, const char attribute){
 
         len = _new.length() + 1;
         add.str = _ALLOC<wchar_t>(len);
+        if (!add.str)throw _ERROR_EXCEPTION(L"JBL::JBCORLogWindow::ins_addLog: failed to allocate memory.");
         wcscpy_s(add.str, len, _new.c_str());
     }
 

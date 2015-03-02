@@ -12,20 +12,20 @@ JBCORDraw::JBCORDraw(JBCORWindow* windowInst) : JBBASWndProc(){
     // 그래픽 인터페이스 생성
     IDXGIFactory* factory = nullptr;
     if (FAILED(CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)&factory)))
-        throw _ERROR_EXCEPTION(L"JBL::JBCORDraw: failed to call CreateDXGIFactory.");
-    _LOG_S(L"JBL::JBCORDraw: succeeded to call CreateDXGIFactory.");
+        throw _ERROR_EXCEPTION(L"JBL::JBCORDraw::JBCORDraw: failed to call CreateDXGIFactory.");
+    _LOG_S(L"JBL::JBCORDraw::JBCORDraw: succeeded to call CreateDXGIFactory.");
 
     // 그래픽 어댑터 생성(그래픽 카드)
     IDXGIAdapter* adapter = nullptr;
     if (FAILED(factory->EnumAdapters(0, &adapter)))
-        throw _ERROR_EXCEPTION(L"JBL::JBCORDraw: failed to call IDXGIFactory::EnumAdapters.");
-    _LOG_S(L"JBL::JBCORDraw: succeeded to call IDXGIFactory::EnumAdapters.");
+        throw _ERROR_EXCEPTION(L"JBL::JBCORDraw::JBCORDraw: failed to call IDXGIFactory::EnumAdapters.");
+    _LOG_S(L"JBL::JBCORDraw::JBCORDraw: succeeded to call IDXGIFactory::EnumAdapters.");
 
     // 그래픽 출력 장치 열거(모니터)
     IDXGIOutput* adapterOutput = nullptr;
     if (FAILED(adapter->EnumOutputs(0, &adapterOutput)))
-        throw _ERROR_EXCEPTION(L"JBL::JBCORDraw: failed to call IDXGIAdapter::EnumOutputs.");
-    _LOG_S(L"JBL::JBCORDraw: succeeded to call IDXGIAdapter::EnumOutputs.");
+        throw _ERROR_EXCEPTION(L"JBL::JBCORDraw::JBCORDraw: failed to call IDXGIAdapter::EnumOutputs.");
+    _LOG_S(L"JBL::JBCORDraw::JBCORDraw: succeeded to call IDXGIAdapter::EnumOutputs.");
 
     // 해당 포맷에 준하는 디스플레이 개수를 구함(모니터)
     _UINT numModes;
@@ -35,12 +35,12 @@ JBCORDraw::JBCORDraw(JBCORWindow* windowInst) : JBBASWndProc(){
         &numModes,
         nullptr
         )))
-        throw _ERROR_EXCEPTION(L"JBL::JBCORDraw: failed to call IDXGIOutput::GetDisplayModeList(get).");
-    _LOG_S(L"JBL::JBCORDraw: succeeded to call IDXGIOutput::GetDisplayModeList(get).");
+        throw _ERROR_EXCEPTION(L"JBL::JBCORDraw::JBCORDraw: failed to call IDXGIOutput::GetDisplayModeList(get).");
+    _LOG_S(L"JBL::JBCORDraw::JBCORDraw: succeeded to call IDXGIOutput::GetDisplayModeList(get).");
 
     // 디스플레이 리스트 초기화
     auto displayModeList = _ALLOC<DXGI_MODE_DESC>(numModes);
-    if (!displayModeList)throw _ERROR_EXCEPTION(L"JBL::JBLCORDraw: failed to allocate memory on displayModeList.");
+    if (!displayModeList)throw _ERROR_EXCEPTION(L"JBL::JBLCORDraw::JBCORDraw: failed to allocate memory on displayModeList.");
 
     // 디스플레이 리스트 채움
     if (FAILED(adapterOutput->GetDisplayModeList(
@@ -49,8 +49,8 @@ JBCORDraw::JBCORDraw(JBCORWindow* windowInst) : JBBASWndProc(){
         &numModes,
         displayModeList
         )))
-        throw _ERROR_EXCEPTION(L"JBL::JBCORDraw: failed to call IDXGIOutput::GetDisplayModeList(fill).");
-    _LOG_S(L"JBL::JBCORDraw: succeeded to call IDXGIOutput::GetDisplayModeList(fill).");
+        throw _ERROR_EXCEPTION(L"JBL::JBCORDraw::JBCORDraw: failed to call IDXGIOutput::GetDisplayModeList(fill).");
+    _LOG_S(L"JBL::JBCORDraw::JBCORDraw: succeeded to call IDXGIOutput::GetDisplayModeList(fill).");
 
     // 해상도에 맞는 화면 갱신 비를 구함
     auto numerator = decltype(displayModeList->RefreshRate.Numerator){0};
@@ -74,8 +74,8 @@ JBCORDraw::JBCORDraw(JBCORWindow* windowInst) : JBBASWndProc(){
     DXGI_ADAPTER_DESC adapterDesc;
     ZeroMemory(&adapterDesc, sizeof adapterDesc);
     if (FAILED(adapter->GetDesc(&adapterDesc)))
-        throw _ERROR_EXCEPTION(L"JBL::JBCORDraw: failed to call IDXGIAdapter::GetDesc.");
-    _LOG_S(L"JBL::JBCORDraw: succeeded to call IDXGIAdapter::GetDesc.");
+        throw _ERROR_EXCEPTION(L"JBL::JBCORDraw::JBCORDraw: failed to call IDXGIAdapter::GetDesc.");
+    _LOG_S(L"JBL::JBCORDraw::JBCORDraw: succeeded to call IDXGIAdapter::GetDesc.");
 
     // 비디오 메모리 명시
     ins_vRamMemory = adapterDesc.DedicatedVideoMemory;
@@ -84,10 +84,10 @@ JBCORDraw::JBCORDraw(JBCORWindow* windowInst) : JBBASWndProc(){
     {
         auto len = wcslen(adapterDesc.Description);
         ins_vCardName = _ALLOC<wchar_t>(len + 1);
-        if (!ins_vCardName)throw _ERROR_EXCEPTION(L"JBL::JBLCORDraw: failed to allocate memory on ins_vCardName.");
+        if (!ins_vCardName)throw _ERROR_EXCEPTION(L"JBL::JBLCORDraw::JBCORDraw: failed to allocate memory on ins_vCardName.");
 
         if(wcscpy_s(ins_vCardName, len + 1, adapterDesc.Description))
-            throw _ERROR_EXCEPTION(L"JBL::JBLCORDraw: failed to call wcscpy_s on ins_vCardName.");
+            throw _ERROR_EXCEPTION(L"JBL::JBLCORDraw::JBCORDraw: failed to call wcscpy_s on ins_vCardName.");
     }
 
     _FREE(displayModeList);
@@ -130,8 +130,8 @@ JBCORDraw::JBCORDraw(JBCORWindow* windowInst) : JBBASWndProc(){
         nullptr,
         &ins_deviceContext
         )))
-        throw _ERROR_EXCEPTION(L"JBL::JBCORDraw: failed to call D3D11CreateDeviceAndSwapChain.");
-    _LOG_S(L"JBL::JBCORDraw: succeeded to call D3D11CreateDeviceAndSwapChain.");
+        throw _ERROR_EXCEPTION(L"JBL::JBCORDraw::JBCORDraw: failed to call D3D11CreateDeviceAndSwapChain.");
+    _LOG_S(L"JBL::JBCORDraw::JBCORDraw: succeeded to call D3D11CreateDeviceAndSwapChain.");
 };
 JBCORDraw::~JBCORDraw(){
     if (ins_swapChain)ins_swapChain->SetFullscreenState(FALSE, nullptr);

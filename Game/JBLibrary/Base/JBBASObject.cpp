@@ -21,13 +21,13 @@ bool JBBASObject::init(){
 #ifdef _WIN64
             _LOG_F(STRING::glb_strFormat(
                 ERROR_BUFFER_SIZE,
-                L"JBL::JBBASObject(%llu): failed to call JBL::JBBASComponent(%u)::init.",
+                L"JBL::JBBASObject::init(%llu): failed to call JBL::JBBASComponent(%u)::init.",
                 ins_id, i.first
                 ));
 #else
             _LOG_F(STRING::glb_strFormat(
                 ERROR_BUFFER_SIZE,
-                L"JBL::JBBASObject(%u): failed to call JBL::JBBASComponent(%u)::init.",
+                L"JBL::JBBASObject::init(%u): failed to call JBL::JBBASComponent(%u)::init.",
                 ins_id, i.first
                 ));
 #endif
@@ -45,13 +45,13 @@ bool JBBASObject::update(){
 #ifdef _WIN64
             _LOG_F(STRING::glb_strFormat(
                 ERROR_BUFFER_SIZE,
-                L"JBL::JBBASObject(%llu): failed to call JBL::JBBASComponent(%u)::update.",
+                L"JBL::JBBASObject::init(%llu): failed to call JBL::JBBASComponent(%u)::update.",
                 ins_id, i.first
                 ));
 #else
             _LOG_F(STRING::glb_strFormat(
                 ERROR_BUFFER_SIZE,
-                L"JBL::JBBASObject(%u): failed to call JBL::JBBASComponent(%u)::update.",
+                L"JBL::JBBASObject::init(%u): failed to call JBL::JBBASComponent(%u)::update.",
                 ins_id, i.first
                 ));
 #endif

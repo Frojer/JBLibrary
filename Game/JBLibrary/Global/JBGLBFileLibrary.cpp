@@ -5,6 +5,12 @@
 #include"JBGlobalFunc.h"
 #include"../Core/JBCoreModule.h"
 
+#ifdef _WNI64
+#define READ_DATA_SIZE 512
+#else
+#define READ_DATA_SIZE 256
+#endif
+
 using namespace JBL;
 using namespace JBL::SYSTEM;
 
@@ -32,6 +38,7 @@ bool FILELIBRARY::FileLibrary::ins_init(const wchar_t* file){
 
         auto len = wcslen(file) + 1;
         ins_fileRoute = _ALLOC<wchar_t>(len);
+        if (!ins_fileRoute)goto ALLOCATE_FAIL;
         wcscpy_s(ins_fileRoute, len, file);
     }
 
@@ -40,13 +47,20 @@ bool FILELIBRARY::FileLibrary::ins_init(const wchar_t* file){
     }
     else goto INIT_FAIL;
 
-    _LOG_S((_WSTRING(L"JBL::FILELIBRARY::FileLibrary: succeeded to read \"") + _WSTRING(file) + L"\".").c_str());
+    _LOG_S((_WSTRING(L"JBL::FILELIBRARY::FileLibrary::ins_init: succeeded to read \"") + file + L"\".").c_str());
     return true;
 
 INIT_FAIL:
     glb_infoMsg(
         IF_ERROR,
-        (_WSTRING(L"JBL::FILELIBRARY::FileLibrary: failed to read \"") + _WSTRING(file) + L"\".").c_str()
+        (_WSTRING(L"JBL::FILELIBRARY::FileLibrary::ins_init: failed to read \"") + file + L"\".").c_str()
+        );
+    return false;
+
+ALLOCATE_FAIL:
+    glb_infoMsg(
+        IF_ERROR,
+        L"JBL::FILELIBRARY::FileLibrary::ins_init: failed to allocate memory."
         );
     return false;
 }
@@ -94,31 +108,31 @@ bool FILELIBRARY::FileLibrary::getData(const HashSize data, _VECTOR<_BYTE>& _out
     _QWORD i = 0;
     short cycle = 1;
     while (i < itr->second.second){
-        {
-            auto c = inpFile->get(true);
-            if (c == EOF)return false;
-            _out[i] = _BYTE(c);
+        _QWORD moveSz;
+        if (itr->second.second > READ_DATA_SIZE){
+            moveSz = itr->second.second - i;
+            if (moveSz > READ_DATA_SIZE)moveSz = READ_DATA_SIZE;
         }
+        else moveSz = itr->second.second;
 
-        _out[i] ^= cycle;
-        _out[i] = glb_cycleByte(_out[i], -cycle);
+        if (!inpFile->readI64(&_out[i], moveSz, false))return false;
+        for (auto j = decltype(moveSz){0}; j < moveSz; ++j, ++i){
+            _out[i] = IO::glb_getReverseByte(_out[i]);
+            _out[i] ^= cycle;
+            _out[i] = glb_cycleByte(_out[i], -cycle);
 
-        if (!(cycle % 5)){
-            _SWAP(_out[i], _out[i - 2]);
-            _SWAP(_out[i - 4], _out[i - 3]);
+            if (!(cycle % 5)){
+                _SWAP(_out[i], _out[i - 2]);
+                _SWAP(_out[i - 4], _out[i - 3]);
+            }
+
+            cycle >= ins_blendCode ? cycle = 1 : ++cycle;
         }
-
-        if (cycle >= ins_blendCode){
-            _SWAP(_out[i], _out[i - ins_blendCode + 1]);
-
-            cycle = 1;
-        }
-        else ++cycle;
-        ++i;
     }
 
     return true;
 }
+
 /// @brief 라이브러리를 읽습니다.
 /// @return 읽기 성공 여부
 bool FILELIBRARY::FileLibrary::ins_loadFile(){
@@ -172,6 +186,7 @@ bool FILELIBRARY::LibLog::ins_init(const wchar_t* file){
 
         auto len = wcslen(file) + 1;
         ins_fileRoute = _ALLOC<wchar_t>(len);
+        if (!ins_fileRoute)goto ALLOCATE_FAIL;
         wcscpy_s(ins_fileRoute, len, file);
     }
 
@@ -180,13 +195,20 @@ bool FILELIBRARY::LibLog::ins_init(const wchar_t* file){
     }
     else goto INIT_FAIL;
 
-    _LOG_S((_WSTRING(L"JBL::FILELIBRARY::LibLog: succeeded to read \"") + _WSTRING(file) + L"\".").c_str());
+    _LOG_S((_WSTRING(L"JBL::FILELIBRARY::LibLog::ins_init: succeeded to read \"") + file + L"\".").c_str());
     return true;
 
 INIT_FAIL:
     glb_infoMsg(
         IF_ERROR,
-        (_WSTRING(L"JBL::FILELIBRARY::LibLog: failed to read \"") + _WSTRING(file) + L"\".").c_str()
+        (_WSTRING(L"JBL::FILELIBRARY::LibLog::ins_init: failed to read \"") + file + L"\".").c_str()
+        );
+    return false;
+
+ALLOCATE_FAIL:
+    glb_infoMsg(
+        IF_ERROR,
+        L"JBL::FILELIBRARY::FileLibrary::ins_init: failed to allocate memory."
         );
     return false;
 }
@@ -293,7 +315,7 @@ _DWORD FILELIBRARY::LibGenerator::ins_searchDirectory(
                         ::FindClose(hFile);
                         glb_infoMsg(
                             IF_ERROR, (
-                            _STRING("JBL::FILELIBRARY::LibGenerator: the overlapping hash key is exist.\n") +
+                            _STRING("JBL::FILELIBRARY::LibGenerator::ins_searchDirectory: the overlapping hash key is exist.\n") +
                             +"\"" + refvecList[hash] + "\", \"" + str + "\""
                             ).c_str()
                             );
@@ -357,7 +379,7 @@ bool FILELIBRARY::LibGenerator::ins_editLib(
         }
     }
 
-    _LOG_I((_STRING("JBL::FILELIBRARY::LibGenerator: no changed item. ") +
+    _LOG_I((_STRING("JBL::FILELIBRARY::LibGenerator::ins_editLib: no changed item. ") +
         "\"" + libRoute + "\"."
         ).c_str());
     return true;
@@ -367,7 +389,7 @@ EDIT_LIB_RES_FAIL:
     if (remove(libRoute.c_str())){
         glb_infoMsg(
             IF_ERROR, (
-            _STRING("JBL::FILELIBRARY::LibGenerator: failed to delete file. ") +
+            _STRING("JBL::FILELIBRARY::LibGenerator::ins_editLib: failed to delete file. ") +
             "\"" + libRoute + "\""
             ).c_str()
             );
@@ -417,17 +439,12 @@ bool FILELIBRARY::LibGenerator::ins_genLib(
         _QWORD i2 = 0;
         short cycle = 1;
         while (i2 < i->second){
-            if ((i2 == 0 || ((i2 + 1) % ins_blendCode) == 0) && (i2 + ins_blendCode - 1 < i->second)){
-                _SWAP(tmp[i2], tmp[i2 + ins_blendCode - 1]);
-            }
-
             if (!(cycle % 5)){
                 _SWAP(tmp[i2], tmp[i2 - 2]);
                 _SWAP(tmp[i2 - 4], tmp[i2 - 3]);
             }
 
-            if (cycle >= ins_blendCode)cycle = 1;
-            else ++cycle;
+            cycle >= ins_blendCode ? cycle = 1 : ++cycle;
             ++i2;
         }
 
@@ -439,8 +456,7 @@ bool FILELIBRARY::LibGenerator::ins_genLib(
 
             if (!f->put(tmp[i2], true))return false;
 
-            if (cycle >= ins_blendCode)cycle = 1;
-            else ++cycle;
+            cycle >= ins_blendCode ? cycle = 1 : ++cycle;
             ++i2;
         }
     }
@@ -448,9 +464,12 @@ bool FILELIBRARY::LibGenerator::ins_genLib(
     _BYTE blendCode = glb_blendCode;
     if (!fLog->write(&blendCode, sizeof blendCode, false))return false;
 
-    //char last[3] = { 'R', 'I', 'P' };
-    //if (!f->write(&last, sizeof last, false))return false;
-    //if (!fLog->write(&last, sizeof last, false))return false;
+    /// 버전 기입
+    {
+        auto version = decltype(glb_gameVersion){glb_gameVersion};
+        if (!f->write(&version, sizeof version, false))return false;
+        if (!fLog->write(&version, sizeof version, false))return false;
+    }
 
     return true;
 }

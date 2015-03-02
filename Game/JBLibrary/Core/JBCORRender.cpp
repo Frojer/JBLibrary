@@ -12,13 +12,13 @@ JBCORRender::JBCORRender(JBCORDraw* drawInst) : JBBASWndProc(){
     // 백 버퍼를 구함
     ID3D11Texture2D* backBufferPtr = nullptr;
     if (FAILED(ins_drawInst->getSwapChain()->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&backBufferPtr)))
-        throw _ERROR_EXCEPTION(L"JBL::JBCORRender: failed to call IDXGISwapChain::GetBuffer(backBuf).");
-    _LOG_S(L"JBL::JBCORRender: succeeded to call IDXGISwapChain::GetBuffer(backBuf).");
+        throw _ERROR_EXCEPTION(L"JBL::JBCORRender::JBCORRender: failed to call IDXGISwapChain::GetBuffer(backBuf).");
+    _LOG_S(L"JBL::JBCORRender::JBCORRender: succeeded to call IDXGISwapChain::GetBuffer(backBuf).");
 
     // 렌더 타겟 뷰를 구함
     if (FAILED(ins_drawInst->getDevice()->CreateRenderTargetView(backBufferPtr, nullptr, &ins_renderTargetView)))
-        throw _ERROR_EXCEPTION(L"JBL::JBCORRender: failed to call ID3D11Device::CreateRenderTargetView.");
-    _LOG_S(L"JBL::JBCORRender: succeeded to call ID3D11Device::CreateRenderTargetView.");
+        throw _ERROR_EXCEPTION(L"JBL::JBCORRender::JBCORRender: failed to call ID3D11Device::CreateRenderTargetView.");
+    _LOG_S(L"JBL::JBCORRender::JBCORRender: succeeded to call ID3D11Device::CreateRenderTargetView.");
 
     _RELEASE(backBufferPtr);
 
@@ -43,8 +43,8 @@ JBCORRender::JBCORRender(JBCORDraw* drawInst) : JBBASWndProc(){
         nullptr,
         &ins_depthStencilBuffer
         )))
-        throw _ERROR_EXCEPTION(L"JBL::JBCORRender: failed to call ID3D11Device::CreateTexture2D(depthStencilBuf).");
-    _LOG_S(L"JBL::JBCORRender: succeeded to call ID3D11Device::CreateTexture2D(depthStencilBuf).");
+        throw _ERROR_EXCEPTION(L"JBL::JBCORRender::JBCORRender: failed to call ID3D11Device::CreateTexture2D(depthStencilBuf).");
+    _LOG_S(L"JBL::JBCORRender::JBCORRender: succeeded to call ID3D11Device::CreateTexture2D(depthStencilBuf).");
 
     // 깊이 스텐실 상태 DESC 구성
     D3D11_DEPTH_STENCIL_DESC depthStencilDesc;
@@ -69,8 +69,8 @@ JBCORRender::JBCORRender(JBCORDraw* drawInst) : JBBASWndProc(){
         &depthStencilDesc,
         &ins_depthStencilState
         )))
-        throw _ERROR_EXCEPTION(L"JBL::JBCORRender: failed to call ID3D11Device::CreateDepthStencilState.");
-    _LOG_S(L"JBL::JBCORRender: succeeded to call ID3D11Device::CreateDepthStencilState.");
+        throw _ERROR_EXCEPTION(L"JBL::JBCORRender::JBCORRender: failed to call ID3D11Device::CreateDepthStencilState.");
+    _LOG_S(L"JBL::JBCORRender::JBCORRender: succeeded to call ID3D11Device::CreateDepthStencilState.");
 
     // 깊이 스텐실 상태 적용
     ins_drawInst->getDeviceContext()->OMSetDepthStencilState(ins_depthStencilState, 1);
@@ -88,8 +88,8 @@ JBCORRender::JBCORRender(JBCORDraw* drawInst) : JBBASWndProc(){
         &depthStencilViewDesc,
         &ins_depthStencilView
         )))
-        throw _ERROR_EXCEPTION(L"JBL::JBCORRender: failed to call ID3D11Device::CreateDepthStencilView.");
-    _LOG_S(L"JBL::JBCORRender: succeeded to call ID3D11Device::CreateDepthStencilView.");
+        throw _ERROR_EXCEPTION(L"JBL::JBCORRender::JBCORRender: failed to call ID3D11Device::CreateDepthStencilView.");
+    _LOG_S(L"JBL::JBCORRender::JBCORRender: succeeded to call ID3D11Device::CreateDepthStencilView.");
 
     // 렌더링 파이프 라인에 ins_renderTargetView 및 ins_depthStencilView 적용
     ins_drawInst->getDeviceContext()->OMSetRenderTargets(1, &ins_renderTargetView, ins_depthStencilView);
@@ -110,8 +110,8 @@ JBCORRender::JBCORRender(JBCORDraw* drawInst) : JBBASWndProc(){
 
     // 래스터라이저 상태 생성
     if (FAILED(ins_drawInst->getDevice()->CreateRasterizerState(&rasterDesc, &ins_rasterState)))
-        throw _ERROR_EXCEPTION(L"JBL::JBCORRender: failed to call ID3D11Device::CreateRasterizerState.");
-    _LOG_S(L"JBL::JBCORRender: succeeded to call ID3D11Device::CreateRasterizerState.");
+        throw _ERROR_EXCEPTION(L"JBL::JBCORRender::JBCORRender: failed to call ID3D11Device::CreateRasterizerState.");
+    _LOG_S(L"JBL::JBCORRender::JBCORRender: succeeded to call ID3D11Device::CreateRasterizerState.");
 
     // 래스터라이저 적용
     ins_drawInst->getDeviceContext()->RSSetState(ins_rasterState);

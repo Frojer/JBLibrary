@@ -4,6 +4,9 @@
 #include<windows.h>
 
 namespace JBL{
+    /// 게임 버전을 설정합니다.
+    static const _WORD glb_gameVersion = 0x0001;
+
     /// 파일 암호화 코드를 설정합니다.
     static const _BYTE glb_blendCode = 17;
 

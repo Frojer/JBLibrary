@@ -21,8 +21,8 @@ JBCORWindow::JBCORWindow(const HINSTANCE& hInst) : JBBASWndProc(){
     cls.hbrBackground = (decltype(cls.hbrBackground))GetStockObject(BLACK_BRUSH);
     cls.lpszClassName = glb_className;
     cls.lpszMenuName = nullptr;
-    if (!RegisterClassEx(&cls))throw _ERROR_EXCEPTION(L"JBL::JBCORWindow: failed to call RegisterClassEx.");
-    _LOG_S(L"JBL::JBCORWindow: succeeded to call RegisterClassEx.");
+    if (!RegisterClassEx(&cls))throw _ERROR_EXCEPTION(L"JBL::JBCORWindow::JBCORWindow: failed to call RegisterClassEx.");
+    _LOG_S(L"JBL::JBCORWindow::JBCORWindow: succeeded to call RegisterClassEx.");
 
     ins_hWnd = CreateWindowEx(
         WS_OVERLAPPED,
@@ -35,8 +35,8 @@ JBCORWindow::JBCORWindow(const HINSTANCE& hInst) : JBBASWndProc(){
         ins_hInst,
         nullptr
         );
-    if (!ins_hWnd)throw _ERROR_EXCEPTION(L"JBL::JBCORWindow: failed to call CreateWindowEx.");
-    _LOG_S(L"JBL::JBCORWindow: succeeded to call CreateWindowEx.");
+    if (!ins_hWnd)throw _ERROR_EXCEPTION(L"JBL::JBCORWindow::JBCORWindow: failed to call CreateWindowEx.");
+    _LOG_S(L"JBL::JBCORWindow::JBCORWindow: succeeded to call CreateWindowEx.");
 
     if (!resizeWindow())throw _ERROR_EXCEPTION();
 }
@@ -63,18 +63,18 @@ bool JBCORWindow::resizeWindow(){
         ins_formSize.y,
         FALSE
         )){
-        glb_infoMsg(IF_ERROR, L"JBL::JBCORWindow: failed to call MoveWindow.");
+        glb_infoMsg(IF_ERROR, L"JBL::JBCORWindow::resizeWindow: failed to call MoveWindow.");
         return false;
     }
-    _LOG_S(L"JBL::JBCORWindow: succeeded to call MoveWindow.");
+    _LOG_S(L"JBL::JBCORWindow::resizeWindow: succeeded to call MoveWindow.");
 
     ShowWindow(ins_hWnd, SW_SHOW);
 
     if (!UpdateWindow(ins_hWnd)){
-        glb_infoMsg(IF_ERROR, L"JBL::JBCORWindow: failed to call UpdateWindow.");
+        glb_infoMsg(IF_ERROR, L"JBL::JBCORWindow::resizeWindow: failed to call UpdateWindow.");
         return false;
     }
-    _LOG_S(L"JBL::JBCORWindow: succeeded to call UpdateWindow.");
+    _LOG_S(L"JBL::JBCORWindow::resizeWindow: succeeded to call UpdateWindow.");
 
     return true;
 }
@@ -87,10 +87,10 @@ LRESULT JBCORWindow::ins_curProc(HWND hWnd, _UINT msg, WPARAM wParam, LPARAM lPa
     case WM_ACTIVATEAPP:
         if (wParam == TRUE){
             _SETFOCUS_LOG;
-            _LOG_I(L"WNDPROC: window is activated.");
+            _LOG_I(L"JBL::JBCORWindow::ins_curProc: window is activated.");
         }
         else{
-            _LOG_I(L"WNDPROC: window is deactivated.");
+            _LOG_I(L"JBL::JBCORWindow::ins_curProc: window is deactivated.");
         }
         break;
     }

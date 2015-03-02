@@ -176,14 +176,14 @@ namespace JBL{
             inline void push_back(const T c){
                 if (ins_length + 1 <= ins_capacitySz){ ins_str[ins_length] = c; ins_str[++ins_length] = (T)0; }
 #ifdef _DEBUG
-                else throw _ERROR_EXCEPTION(L"JBL::STRING::customString: out of index.");
+                else throw _ERROR_EXCEPTION(L"JBL::STRING::customString::push_back: out of index.");
 #endif
             }
             /// @brief 문자열 끝의 원소 하나를 제거합니다.
             inline void pop_back(){
                 if (ins_length){ ins_str[--ins_length] = (T)0; }
 #ifdef _DEBUG
-                else throw _ERROR_EXCEPTION(L"JBL::STRING::customString: out of index.");
+                else throw _ERROR_EXCEPTION(L"JBL::STRING::customString::pop_back: out of index.");
 #endif
             }
         public:
@@ -233,7 +233,7 @@ namespace JBL{
             /// @return 해당 위치의 원소
             inline T at(const _SIZE_T ind)const{
 #ifdef _DEBUG
-                if (ind >= ins_capacitySz)throw _ERROR_EXCEPTION(L"JBL::STRING::customString: out of range.");
+                if (ind >= ins_capacitySz)throw _ERROR_EXCEPTION(L"JBL::STRING::customString::at: out of range.");
 #endif
                 return ins_str[ind];
             }
@@ -310,13 +310,13 @@ namespace JBL{
 
                 if (begin == ins_length)return customString();
 #ifdef _DEBUG
-                if (begin > ins_length)throw _ERROR_EXCEPTION(L"JBL::STRING::customString: out of range.");
-                if (begin + len - 1 >= ins_length)throw _ERROR_EXCEPTION(L"JBL::STRING::customString: out of range.");
+                if (begin > ins_length)throw _ERROR_EXCEPTION(L"JBL::STRING::customString::substr: out of range.");
+                if (begin + len - 1 >= ins_length)throw _ERROR_EXCEPTION(L"JBL::STRING::customString::substr: out of range.");
 #endif
 
                 T* tmp = _ALLOC<T>(len + 1);
 #ifdef _DEBUG
-                if (!tmp)throw _ERROR_EXCEPTION(L"JBL::STRING::customString: failed to allocate memory.");
+                if (!tmp)throw _ERROR_EXCEPTION(L"JBL::STRING::customString::substr: failed to allocate memory.");
 #endif
                 ins_strcpy(tmp, ins_str + begin, len);
 
@@ -332,12 +332,12 @@ namespace JBL{
 
                 if (begin == ins_length)return customString();
 #ifdef _DEBUG
-                if (begin > ins_length)throw _ERROR_EXCEPTION(L"JBL::STRING::customString: out of range.");
+                if (begin > ins_length)throw _ERROR_EXCEPTION(L"JBL::STRING::customString::substr: out of range.");
 #endif
 
                 T* tmp = _ALLOC<T>(ins_length - begin + 1);
 #ifdef _DEBUG
-                if (!tmp)throw _ERROR_EXCEPTION(L"JBL::STRING::customString: failed to allocate memory.");
+                if (!tmp)throw _ERROR_EXCEPTION(L"JBL::STRING::customString::substr: failed to allocate memory.");
 #endif
                 ins_strcpy(tmp, ins_str + begin);
 
@@ -354,7 +354,7 @@ namespace JBL{
                 ins_length = 0;
                 ins_str = nullptr;
 #ifdef _DEBUG
-                if (!ins_sizing(size))throw _ERROR_EXCEPTION(L"JBL::STRING::customString: failed to allocate memory.");
+                if (!ins_sizing(size))throw _ERROR_EXCEPTION(L"JBL::STRING::customString::customString: failed to allocate memory.");
 #else
                 ins_sizing(size);
 #endif
@@ -363,8 +363,8 @@ namespace JBL{
                 ins_capacitySz = 0;
                 ins_str = nullptr;
 #ifdef _DEBUG
-                if (len > ins_strlen(str))throw _ERROR_EXCEPTION(L"JBL::STRING::customString: out of index.");
-                if (!ins_sizing(len + 1))throw _ERROR_EXCEPTION(L"JBL::STRING::customString: failed to allocate memory.");
+                if (len > ins_strlen(str))throw _ERROR_EXCEPTION(L"JBL::STRING::customString::customString: out of index.");
+                if (!ins_sizing(len + 1))throw _ERROR_EXCEPTION(L"JBL::STRING::customString::customString: failed to allocate memory.");
 #else
                 ins_sizing(len + 1);
 #endif
@@ -374,7 +374,7 @@ namespace JBL{
                 ins_capacitySz = 0;
                 ins_str = nullptr;
 #ifdef _DEBUG
-                if (!ins_sizing(ins_strlen(str) + 1))throw _ERROR_EXCEPTION(L"JBL::STRING::customString: failed to allocate memory.");
+                if (!ins_sizing(ins_strlen(str) + 1))throw _ERROR_EXCEPTION(L"JBL::STRING::customString::customString: failed to allocate memory.");
 #else
                 ins_sizing(ins_strlen(str) + 1);
 #endif
@@ -391,8 +391,8 @@ namespace JBL{
                     ins_capacitySz = 0;
                     ins_str = nullptr;
 #ifdef _DEBUG
-                    if(len > str.ins_capacitySz)throw _ERROR_EXCEPTION(L"JBL::STRING::customString: out of index.");
-                    if (!ins_sizing(len + 1))throw _ERROR_EXCEPTION(L"JBL::STRING::customString: failed to allocate memory.");
+                    if(len > str.ins_capacitySz)throw _ERROR_EXCEPTION(L"JBL::STRING::customString::customString: out of index.");
+                    if (!ins_sizing(len + 1))throw _ERROR_EXCEPTION(L"JBL::STRING::customString::customString: failed to allocate memory.");
 #else
                     ins_sizing(len + 1);
 #endif
@@ -404,7 +404,7 @@ namespace JBL{
                     ins_capacitySz = 0;
                     ins_str = nullptr;
 #ifdef _DEBUG
-                    if (!ins_sizing(str.ins_capacitySz))throw _ERROR_EXCEPTION(L"JBL::STRING::customString: failed to allocate memory.");
+                    if (!ins_sizing(str.ins_capacitySz))throw _ERROR_EXCEPTION(L"JBL::STRING::customString::customString: failed to allocate memory.");
 #else
                     ins_sizing(str.ins_capacitySz);
 #endif
@@ -430,7 +430,7 @@ namespace JBL{
                     ins_capacitySz = 0;
                     _FREE(ins_str);
 #ifdef _DEBUG
-                    if (!ins_sizing(ins_length + 1))throw _ERROR_EXCEPTION(L"JBL::STRING::customString: failed to allocate memory.");
+                    if (!ins_sizing(ins_length + 1))throw _ERROR_EXCEPTION(L"JBL::STRING::customString::operator=: failed to allocate memory.");
 #else
                     ins_sizing(ins_length + 1);
 #endif
@@ -462,7 +462,7 @@ namespace JBL{
                     ins_capacitySz = 0;
                     _FREE(ins_str);
 #ifdef _DEBUG
-                    if (!ins_sizing(ins_length + 1))throw _ERROR_EXCEPTION(L"JBL::STRING::customString: failed to allocate memory.");
+                    if (!ins_sizing(ins_length + 1))throw _ERROR_EXCEPTION(L"JBL::STRING::customString::operator=: failed to allocate memory.");
 #else
                     ins_sizing(ins_length + 1);
 #endif
@@ -499,7 +499,7 @@ namespace JBL{
         public:
             customString& operator+=(const T c){
 #ifdef _DEBUG
-                if (!resize(ins_length + 2))throw _ERROR_EXCEPTION(L"JBL::STRING::customString: failed to allocate memory.");
+                if (!resize(ins_length + 2))throw _ERROR_EXCEPTION(L"JBL::STRING::customString::operator+=: failed to allocate memory.");
 #else
                 resize(ins_length + 2);
 #endif
@@ -513,7 +513,7 @@ namespace JBL{
                 auto tarLen = ins_strlen(str);
                 if (!(rawLen + tarLen))return *this;
 #ifdef _DEBUG
-                if (!resize(rawLen + tarLen + 1))throw _ERROR_EXCEPTION(L"JBL::STRING::customString: failed to allocate memory.");
+                if (!resize(rawLen + tarLen + 1))throw _ERROR_EXCEPTION(L"JBL::STRING::customString::operator+=: failed to allocate memory.");
 #else
                 resize(rawLen + tarLen + 1);
 #endif
@@ -526,7 +526,7 @@ namespace JBL{
                 auto tarLen = str.ins_length;
                 if (!(rawLen + tarLen))return *this;
 #ifdef _DEBUG
-                if (!resize(rawLen + tarLen + 1))throw _ERROR_EXCEPTION(L"JBL::STRING::customString: failed to allocate memory.");
+                if (!resize(rawLen + tarLen + 1))throw _ERROR_EXCEPTION(L"JBL::STRING::customString::operator+=: failed to allocate memory.");
 #else
                 resize(rawLen + tarLen + 1);
 #endif

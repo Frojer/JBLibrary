@@ -37,11 +37,11 @@ bool IO::FILE_IO::ins_init(const wchar_t* fileName){
     if (!ins_file){
         glb_infoMsg(
             IF_ERROR,
-            (_WSTRING(L"JBL::IO::FILE_IO: failed to read \"") + ins_fileName + L"\".").c_str()
+            (_WSTRING(L"JBL::IO::FILE_IO::ins_init: failed to read \"") + ins_fileName + L"\".").c_str()
             );
         return false;
     }
-    _LOG_S((_WSTRING(L"JBL::IO::FILE_IO: succeeded to read \"") + ins_fileName + L"\".").c_str());
+    _LOG_S((_WSTRING(L"JBL::IO::FILE_IO::ins_init: succeeded to read \"") + ins_fileName + L"\".").c_str());
 
     return true;
 }
@@ -83,15 +83,22 @@ bool IO::FILE_IO::read(_BYTE* data, const _DWORD size, const bool isFlip){
     return true;
 }
 bool IO::FILE_IO::readI64(_BYTE* data, const _QWORD size, const bool isFlip){
-#ifdef _WIN64
-    if (fread_s(data, size, 1, size, ins_file) != size)return false;
-#else
-    _DWORD sizeT = (_DWORD)size;
-    if(size <= ULONG_MAX){
+#ifndef _WIN64
+    auto sizeT = (_DWORD)size;
+    if (size <= ULONG_MAX){
         if (fread_s(data, sizeT, 1, sizeT, ins_file) != sizeT)return false;
-    }else{
-        auto i = decltype(size){0};
-        while (i < size){
+        if (isFlip){
+            auto i = decltype(sizeT){0};
+            while (i < sizeT){
+                *data = glb_getReverseByte(*data);
+                ++data;
+                ++i;
+            }
+        }
+    }
+    else{
+        auto i = decltype(sizeT){0};
+        while (i < sizeT){
             auto c = get();
             if (c == EOF)return false;
             if (isFlip)c = glb_getReverseByte(c);
@@ -99,7 +106,8 @@ bool IO::FILE_IO::readI64(_BYTE* data, const _QWORD size, const bool isFlip){
         }
         return true;
     }
-#endif
+#else
+    if (fread_s(data, size, 1, size, ins_file) != size)return false;
     if (isFlip){
         auto i = decltype(size){0};
         while (i < size){
@@ -108,6 +116,7 @@ bool IO::FILE_IO::readI64(_BYTE* data, const _QWORD size, const bool isFlip){
             ++i;
         }
     }
+#endif
     return true;
 }
 
@@ -115,9 +124,9 @@ bool IO::FILE_IO::write(void* data, const _DWORD size, const bool isFlip){
     if (!isFlip){
         if (fwrite(data, 1, size, ins_file) != size)return false;
     }
-    else{  
+    else{
         auto reverse = [](void* data, const _DWORD& size)->void{
-            _BYTE* p = (_BYTE*)data;
+            auto p = (_BYTE*)data;
             auto i = decltype(size){0};
             while (i < size){
                 *p = glb_getReverseByte(*p);
@@ -138,7 +147,7 @@ bool IO::FILE_IO::write(void* data, const _DWORD size, const bool isFlip){
 bool IO::FILE_IO::writeI64(void* data, const _QWORD size, const bool isFlip){
 #ifndef _WIN64
     if(size > ULONG_MAX){
-        _BYTE* p = (_BYTE*)data;
+        auto p = (_BYTE*)data;
         auto i = decltype(size){0};
         while (i < size){
             if (!put(isFlip ? glb_getReverseByte(*p) : *p))return false;
@@ -153,14 +162,14 @@ bool IO::FILE_IO::writeI64(void* data, const _QWORD size, const bool isFlip){
 #ifdef _WIN64
         if (fwrite(data, 1, size, ins_file) != size)return false;
 #else
-        _DWORD sizeT = (_DWORD)size;
+        auto sizeT = (_DWORD)size;
         if (fwrite(data, 1, sizeT, ins_file) != sizeT)return false;
 #endif
     }
     else{
 #ifdef _WIN64
         auto reverse = [](void* data, const _QWORD& size)->void{
-            _BYTE* p = (_BYTE*)data;
+            auto p = (_BYTE*)data;
             auto i = decltype(size){0};
             while (i < size){
                 *p = glb_getReverseByte(*p);
@@ -176,10 +185,10 @@ bool IO::FILE_IO::writeI64(void* data, const _QWORD size, const bool isFlip){
         }
         reverse(data, size);
 #else
-        _DWORD sizeT = (_DWORD)size;
+        auto sizeT = (_DWORD)size;
 
         auto reverse = [](void* data, const _DWORD& size)->void{
-            _BYTE* p = (_BYTE*)data;
+            auto p = (_BYTE*)data;
             auto i = decltype(size){0};
             while (i < size){
                 *p = glb_getReverseByte(*p);
