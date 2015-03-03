@@ -2,6 +2,7 @@
 
 #include<cmath>
 #include<cfloat>
+
 #include"JBGlobalMacro.hpp"
 
 namespace JBL{

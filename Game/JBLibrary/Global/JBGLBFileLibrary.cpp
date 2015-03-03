@@ -1,7 +1,6 @@
-﻿#include<forward_list>
-#include<algorithm>
-#include<io.h>
+﻿#include<io.h>
 #include<limits.h>
+
 #include"JBGlobalFunc.h"
 #include"../Core/JBCoreModule.h"
 

@@ -48,30 +48,51 @@
 #define _DWORD unsigned long
 #define _QWORD unsigned long long
 
+#include<algorithm>
+
+#include<boost/utility/declval.hpp>
 #define _DECLVAL boost::declval
 
+#include<boost/bind.hpp>
 #define _MOVE boost::move
 #define _FORWARD boost::forward
 
+#include<boost/function.hpp>
 #define _FUNC boost::function
 
+#include<boost/swap.hpp>
 #define _SWAP boost::swap
 
 #define _PAIR std::pair
 #define _MAKE_PAIR std::make_pair
 
+#include<boost/move/unique_ptr.hpp>
+#include<boost/move/make_unique.hpp>
 #define _UNIQUE_PTR boost::movelib::unique_ptr
 template<typename T> using _UNIQUE_PTR_M = _UNIQUE_PTR < T, _FUNC<void(T*)> >;
 #define _MAKE_UNIQUE boost::movelib::make_unique
 
+#include<boost/shared_ptr.hpp>
+#include<boost/make_shared.hpp>
 #define _SHARED_PTR boost::shared_ptr
 #define _MAKE_SHARED boost::make_shared
 
+#include<bitset>
 #define _BITSET std::bitset
+
+#include<forward_list>
 #define _FORWARD_LIST std::forward_list
+
+#include<list>
 #define _LIST std::list
+
+#include<vector>
 #define _VECTOR std::vector
+
+#include<map>
 #define _MAP std::map
+
+#include<boost/unordered_map.hpp>
 #define _UNORDERED_MAP boost::unordered_map
 //
 

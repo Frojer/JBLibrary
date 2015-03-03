@@ -14,5 +14,10 @@ JBBASWndProc::JBBASWndProc(){
     if (ins_beforeEndItr == ins_classTable.cend())ins_beforeEndItr = ins_curItr;
 }
 JBBASWndProc::~JBBASWndProc(){
-    ins_classTable.pop_front();
+    for (auto i = ins_classTable.before_begin(), e = ins_classTable.end(); i != e; ++i){
+        if (i._Ptr->_Next->_Myval == this){
+            ins_classTable.erase_after(i);
+            break;
+        }
+    }
 }

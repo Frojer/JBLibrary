@@ -1,6 +1,5 @@
 ﻿#pragma once
 
-#include<windows.h>
 #include"../Base/JBBASWndProc.h"
 
 namespace JBL{

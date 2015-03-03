@@ -1,5 +1,4 @@
-﻿#include<windows.h>
-#include"JBGlobalFunc.h"
+﻿#include"JBGlobalFunc.h"
 #include"../Core/JBCoreModule.h"
 
 using namespace JBL;

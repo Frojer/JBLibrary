@@ -209,6 +209,7 @@
     <ClInclude Include="JBLibrary\Global\JBGlobalFunc.h" />
     <ClInclude Include="JBLibrary\Global\JBGlobalMacro.hpp" />
     <ClInclude Include="JBLibrary\JBDefault.hpp" />
+    <ClInclude Include="JBLibrary\JBDirectXHeader.hpp" />
     <ClInclude Include="JBLibrary\JBLinkLIB.hpp" />
     <ClInclude Include="resource.h" />
   </ItemGroup>

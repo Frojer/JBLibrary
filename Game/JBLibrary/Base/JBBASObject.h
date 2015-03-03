@@ -1,6 +1,5 @@
 ﻿#pragma once
 
-#include<boost/unordered_map.hpp>
 #include"../Global/JBGlobalFunc.h"
 
 namespace JBL{

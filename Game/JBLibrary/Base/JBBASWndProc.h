@@ -1,14 +1,12 @@
 ﻿#pragma once
 
-#include<windows.h>
-#include<forward_list>
 #include"../Global/JBGlobalFunc.h"
 
 namespace JBL{
     class JBCORWindow;
 
     /// @brief 싱글톤 형태의 주요 객체들이 윈도우 메세지를 처리할 수 있도록 윈도우 프로세스를 리스트로 구성합니다.
-    /// @details 이 객체의 소멸 순서는 생성 순서의 반대가 되기 때문에 _UNIQUE_PTR과 같은 스마트 포인터를 활용하여 자동 소멸이 이루어 지도록 합시다.
+    /// @details 이 객체의 소멸 순서는 생성 순서의 반대가 되기 때문에 _UNIQUE_PTR과 같은 스마트 포인터를 활용하여 자동 소멸이 이루어 지도록 하게 될 경우 탐색 비용이 발생하지 않습니다.
     class JBBASWndProc{
     private:
         static _FORWARD_LIST<JBBASWndProc*> ins_classTable;

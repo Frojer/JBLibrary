@@ -1,7 +1,6 @@
 ﻿#ifdef _DEBUG
 #pragma once
 
-#include<windows.h>
 #include"../Global/JBGLBString.h"
 
 namespace JBL{

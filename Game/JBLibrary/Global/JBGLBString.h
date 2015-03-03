@@ -1,6 +1,5 @@
 ﻿#pragma once
 
-#include<windows.h>
 #include"JBGLBCustomString.hpp"
 #include"JBGlobalMacro.hpp"
 

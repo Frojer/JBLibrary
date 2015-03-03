@@ -1,8 +1,5 @@
 ﻿#pragma once
 
-#include<bitset>
-#include<windows.h>
-
 namespace JBL{
     /// 게임 버전을 설정합니다.
     static const _WORD glb_gameVersion = 0x0001;

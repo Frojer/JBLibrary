@@ -1,4 +1,5 @@
 ﻿#include<tchar.h>
+
 #include"JBLibrary/Global/JBGlobalFunc.h"
 #include"JBLibrary/Core/JBCoreModule.h"
 

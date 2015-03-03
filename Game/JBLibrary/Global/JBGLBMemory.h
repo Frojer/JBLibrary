@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include<cstdlib>
+
 #include"JBGlobalMacro.hpp"
 #include"JBGLBSystem.h"
 

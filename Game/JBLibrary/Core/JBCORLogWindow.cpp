@@ -1,7 +1,5 @@
 ﻿#include"../../resource.h"
 
-#include<vector>
-
 #include<windows.h>
 #include<commctrl.h>
 
@@ -10,7 +8,7 @@
 
 using namespace JBL;
 
-#define NUMBER_BUFFER_SIZE 64
+#define NUMBER_BUFFER_SIZE 16
 
 #define FONT_NAME L"Courier New"
 #define FONT_SIZE 9

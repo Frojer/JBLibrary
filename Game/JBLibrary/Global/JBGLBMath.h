@@ -1,6 +1,5 @@
 ﻿#pragma once
 
-#include<cmath>
 #include"JBGLBCustomFloat.hpp"
 
 namespace JBL{

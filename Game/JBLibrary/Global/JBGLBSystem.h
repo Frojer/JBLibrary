@@ -1,7 +1,5 @@
 ﻿#pragma once
 
-#include<windows.h>
-
 namespace JBL{
     namespace SYSTEM{
         /// @brief 메세지 다이얼로그의 모양을 위한 열거체
