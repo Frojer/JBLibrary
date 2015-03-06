@@ -16,13 +16,10 @@ namespace JBL{
             /// @return 문자열의 길이
             static _SIZE_T ins_strlen(const T* str){
                 if (!str)return 0;
-
-                _SIZE_T i = 0;
-                while (*str != (T)0){
-                    ++i;
-                    ++str;
-                }
-                return i;
+            
+                auto ptr = str;
+                while (*ptr != (T)0)++ptr;
+                return ptr - str;
             }
 
             /// @brief 두 문자열을 비교합니다.
@@ -35,7 +32,7 @@ namespace JBL{
                     if (str2)return -1;
                     return 0;
                 }
-
+            
                 while (*str1 != (T)0 && *str2 != (T)0){
                     if (*str1 > *str2)return 1;
                     if (*str1 < *str2)return -1;
@@ -238,6 +235,19 @@ namespace JBL{
                 return ins_str[ind];
             }
         public:
+            /// @brief 문자열의 전체 크기만큼 순회하며 원소마다 함수를 이행합니다.
+            /// @param work 동작시킬 함수
+            template<typename FUNC> void transform(FUNC work){
+                if (!ins_str)return;
+
+                auto i = decltype(ins_capacitySz){0};
+                T* p = ins_str;
+                while (i < ins_capacitySz){
+                    *p = work(*p);
+                    ++p;
+                    ++i;
+                }
+            }
             /// @brief 문자열의 전체 크기만큼 순회하며 원소마다 함수를 이행합니다.
             /// @param work 동작시킬 함수
             void transform(_FUNC<T(T)> work){

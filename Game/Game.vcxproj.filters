@@ -71,6 +71,9 @@
     <ClCompile Include="JBLibrary\Global\JBGLBColor.cpp">
       <Filter>JBLibrary\Global</Filter>
     </ClCompile>
+    <ClCompile Include="JBLibrary\Component\JBCOMRender.cpp">
+      <Filter>JBLibrary\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="JBLibrary\Global\JBGLBIO.h">
@@ -144,6 +147,9 @@
     </ClInclude>
     <ClInclude Include="JBLibrary\JBDirectXHeader.hpp">
       <Filter>JBLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="JBLibrary\Component\JBCOMRender.h">
+      <Filter>JBLibrary\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

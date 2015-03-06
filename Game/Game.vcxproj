@@ -169,6 +169,7 @@
     <ClCompile Include="JBLibrary\Base\JBBASComponent.cpp" />
     <ClCompile Include="JBLibrary\Base\JBBASObject.cpp" />
     <ClCompile Include="JBLibrary\Base\JBBASWndProc.cpp" />
+    <ClCompile Include="JBLibrary\Component\JBCOMRender.cpp" />
     <ClCompile Include="JBLibrary\Core\JBCORDraw.cpp" />
     <ClCompile Include="JBLibrary\Core\JBCoreModule.cpp" />
     <ClCompile Include="JBLibrary\Core\JBCORLogWindow.cpp">
@@ -191,6 +192,7 @@
     <ClInclude Include="JBLibrary\Base\JBBASComponent.h" />
     <ClInclude Include="JBLibrary\Base\JBBASObject.h" />
     <ClInclude Include="JBLibrary\Base\JBBASWndProc.h" />
+    <ClInclude Include="JBLibrary\Component\JBCOMRender.h" />
     <ClInclude Include="JBLibrary\Core\JBCORDraw.h" />
     <ClInclude Include="JBLibrary\Core\JBCoreModule.h" />
     <ClInclude Include="JBLibrary\Core\JBCORLogWindow.h" />
