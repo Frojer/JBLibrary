@@ -127,7 +127,7 @@ template<typename T> using _UNIQUE_PTR_M = _UNIQUE_PTR < T, _FUNC<void(T*)> >;
 
 // math
 #define _FLOAT JBL::MATH::customFloat
-#define _VECTOR JBL::MATH::customVector
+#define _VECTOR3 JBL::MATH::customVector3
 
 #define _MAX JBL::MATH::glb_max
 #define _MIN JBL::MATH::glb_min
