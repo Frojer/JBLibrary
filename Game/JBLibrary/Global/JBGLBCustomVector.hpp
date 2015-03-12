@@ -18,6 +18,7 @@ namespace JBL{
             customVector3(const _FLOAT _x, const _FLOAT _y, const _FLOAT _z) :x(_x), y(_y), z(_z){}
             customVector3(const customVector3& v) :x(v.x), y(v.y), z(v.z){}
         public:
+            inline bool operator!()const{ return !x && !y && !z; }
             inline bool operator==(const customVector3& v)const{ return x == v.x && y == v.y && z == v.z; }
             inline bool operator!=(const customVector3& v)const{ return x != v.x && y != v.y && z != v.z; }
         public:
