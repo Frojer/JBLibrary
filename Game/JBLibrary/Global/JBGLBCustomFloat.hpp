@@ -43,6 +43,7 @@ namespace JBL{
             inline operator float()const{ return val.f; };
             inline operator float&(){ return val.f; };
         public:
+            inline bool operator!()const{ return !val.opr; }
             inline bool operator==(const customFloat& f)const{ return ins_isEqual(f.val.f); }
             inline bool operator==(const float& f)const{ return ins_isEqual(f); }
             inline bool operator!=(const customFloat& f)const{ return !ins_isEqual(f.val.f); }
@@ -56,15 +57,6 @@ namespace JBL{
             inline bool operator<=(const customFloat& f)const{ return (*this < f) || (*this == f); }
             inline bool operator<=(const float& f)const{ return (*this < f) || (*this == f); }
         public:
-            inline customFloat& operator+=(const customFloat& f){ val.f += f.val.f; return *this; }
-            inline customFloat& operator+=(const float& f){ val.f += f; return *this; }
-            inline customFloat& operator-=(const customFloat& f){ val.f -= f.val.f; return *this; }
-            inline customFloat& operator-=(const float& f){ val.f -= f; return *this; }
-            inline customFloat& operator*=(const customFloat& f){ val.f *= f.val.f; return *this; }
-            inline customFloat& operator*=(const float& f){ val.f *= f; return *this; }
-            inline customFloat& operator/=(const customFloat& f){ val.f /= f.val.f; return *this; }
-            inline customFloat& operator/=(const float& f){ val.f /= f; return *this; }
-
             /// @brief this에 this의 f제곱을 대입합니다.
             /// @param f 승수
             /// @return 대입 결과
@@ -77,16 +69,16 @@ namespace JBL{
             /// @param f 승수
             /// @return 대입 결과
             inline customFloat& operator^=(const _INT& f){ val.f = pow(val.f, f); return *this; }
-        public:
-            inline customFloat operator+(const customFloat& f)const{ return customFloat(*this) += f; }
-            inline customFloat operator+(const float& f)const{ return customFloat(*this) += f; }
-            inline customFloat operator-(const customFloat& f)const{ return customFloat(*this) -= f; }
-            inline customFloat operator-(const float& f)const{ return customFloat(*this) -= f; }
-            inline customFloat operator*(const customFloat& f)const{ return customFloat(*this) *= f; }
-            inline customFloat operator*(const float& f)const{ return customFloat(*this) *= f; }
-            inline customFloat operator/(const customFloat& f)const{ return customFloat(*this) /= f; }
-            inline customFloat operator/(const float& f)const{ return customFloat(*this) /= f; }
 
+            inline customFloat& operator*=(const customFloat& f){ val.f *= f.val.f; return *this; }
+            inline customFloat& operator*=(const float& f){ val.f *= f; return *this; }
+            inline customFloat& operator/=(const customFloat& f){ val.f /= f.val.f; return *this; }
+            inline customFloat& operator/=(const float& f){ val.f /= f; return *this; }
+            inline customFloat& operator+=(const customFloat& f){ val.f += f.val.f; return *this; }
+            inline customFloat& operator+=(const float& f){ val.f += f; return *this; }
+            inline customFloat& operator-=(const customFloat& f){ val.f -= f.val.f; return *this; }
+            inline customFloat& operator-=(const float& f){ val.f -= f; return *this; }
+        public:
             /// @brief this의 f제곱을 반환합니다.
             /// @param f 승수
             /// @return 연산 결과
@@ -99,6 +91,15 @@ namespace JBL{
             /// @param f 승수
             /// @return 연산 결과
             inline customFloat operator^(const _INT& f)const{ return customFloat(*this) ^= f; }
+
+            inline customFloat operator*(const customFloat& f)const{ return customFloat(*this) *= f; }
+            inline customFloat operator*(const float& f)const{ return customFloat(*this) *= f; }
+            inline customFloat operator/(const customFloat& f)const{ return customFloat(*this) /= f; }
+            inline customFloat operator/(const float& f)const{ return customFloat(*this) /= f; }
+            inline customFloat operator+(const customFloat& f)const{ return customFloat(*this) += f; }
+            inline customFloat operator+(const float& f)const{ return customFloat(*this) += f; }
+            inline customFloat operator-(const customFloat& f)const{ return customFloat(*this) -= f; }
+            inline customFloat operator-(const float& f)const{ return customFloat(*this) -= f; }
         public:
             /// @brief 절대값을 반환합니다.
             /// @return 절대값
