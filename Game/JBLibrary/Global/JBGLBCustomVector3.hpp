@@ -23,10 +23,12 @@ namespace JBL{
             inline bool operator!=(const customVector3& v)const{ return x != v.x && y != v.y && z != v.z; }
         public:
             inline customVector3& operator*=(const _FLOAT& f){ x *= f; y *= f; z *= f; return *this; }
+            inline customVector3& operator/=(const _FLOAT& f){ _FLOAT m = 1.f / f; x *= m; y *= m; z *= m; return *this; }
             inline customVector3& operator+=(const customVector3& v){ x += v.x; y += v.y; z += v.z; return *this; }
             inline customVector3& operator-=(const customVector3& v){ x -= v.x; y -= v.y; z -= v.z; return *this; }
         public:
             inline customVector3 operator*(const _FLOAT& f)const{ return customVector3(*this) *= f; }
+            inline customVector3 operator/(const _FLOAT& f)const{ return customVector3(*this) /= f; }
             inline customVector3 operator+(const customVector3& v)const{ return customVector3(*this) += v; }
             inline customVector3 operator-(const customVector3& v)const{ return customVector3(*this) -= v; }
         public:

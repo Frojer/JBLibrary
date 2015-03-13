@@ -8,7 +8,6 @@ using namespace JBL::SYSTEM;
 JBCORRender::JBCORRender(JBCORDraw* drawInst) : JBBASWndProc(){
     ins_drawInst = drawInst;
 
-
     // 백 버퍼를 구함
     ID3D11Texture2D* backBufferPtr = nullptr;
     if (FAILED(ins_drawInst->getSwapChain()->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&backBufferPtr)))
