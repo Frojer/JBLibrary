@@ -40,7 +40,7 @@ namespace JBL{
             /// @return 벡터 값
             inline customVector3 normalize()const{
                 _FLOAT len(length());
-                return !len ? customVector3(0.f, 0.f, 0.f) : customVector3(*this) *= 1.f / len;
+                return !len ? customVector3(0.f, 0.f, 0.f) : customVector3(*this) /= len;
             }
         };
     };
