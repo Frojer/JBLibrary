@@ -38,28 +38,38 @@ namespace JBL{
             /// @return 연산 결과
             inline _FLOAT length()const{ return _FLOAT(sqrt((x * x) + (y * y) + (z * z))); }
 
-            /// @brief 단위 벡터를 구합니다.
-            /// @return 연산 결과
-            inline customVector3 normalize()const{
-                _FLOAT len(length());
-                return !len ? customVector3(0.f, 0.f, 0.f) : customVector3(*this) /= len;
-            }
-        public:
             /// @brief 대상 벡터와의 내적을 구합니다.
             /// @param v 연산 대상
             /// @return 연산 결과
             inline _FLOAT dot(const customVector3& v)const{ return _FLOAT((x * v.x) + (y * v.y) + (z * v.z)); }
+        public:
+            /// @brief 현재 벡터를 정규화 시킵니다.
+            /// @return 변환 결과
+            inline customVector3& normalizeSelf(){ return !(*this) ? (*this) *= 0.f : (*this) /= length(); }
+
+            /// @brief 두 벡터의 외적 연산 결과를 저장합니다.
+            /// @param lhs 좌측 연산 대상
+            /// @param rhs 우측 연산 대상
+            /// @return 연산 결과
+            inline customVector3& crossSelf(const customVector3& lhs, const customVector3& rhs){
+                x = (lhs.y * rhs.z) - (lhs.z * rhs.y);
+                y = (lhs.z * rhs.x) - (lhs.x * rhs.z);
+                z = (lhs.x * rhs.y) - (lhs.y * rhs.x);
+                return *this;
+            }
+            /// @brief 대상 벡터와의 외적 연산 결과를 저장합니다.
+            /// @param v 연산 대상
+            /// @return 연산 결과
+            inline customVector3& crossSelf(const customVector3& v){ return crossSelf(customVector3(*this), v); }
+        public:
+            /// @brief 단위 벡터를 구합니다.
+            /// @return 연산 결과
+            inline customVector3 normalize()const{ return customVector3(*this).normalizeSelf(); }
 
             /// @brief 대상 벡터와의 외적을 구합니다.
             /// @param v 연산 대상
             /// @return 연산 결과
-            inline customVector3 cross(const customVector3& v)const{
-                return customVector3(
-                    (y * v.z) - (z * v.y),
-                    (z * v.x) - (x * v.z),
-                    (x * v.y) - (y * v.x)
-                    );
-            }
+            inline customVector3 cross(const customVector3& v)const{ return customVector3(*this).crossSelf(v); }
         };
     };
 };
