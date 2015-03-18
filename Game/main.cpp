@@ -49,6 +49,12 @@ _INT APIENTRY _tWinMain(HINSTANCE hInst, HINSTANCE prevInst, LPTSTR cmdLine, _IN
     }
     _LOG_S(L"MAIN: succeeded to initialize JBCORRender.");
 
+    if (!glb_instWindow->showWindow()){
+        glb_infoMsg(IF_ERROR, L"MAIN: failed to update window.");
+        return -1;
+    }
+    _LOG_S(L"MAIN: succeeded to update window.");
+
     MSG msg;
     ZeroMemory(&msg, sizeof msg);
     while (true){
@@ -84,8 +90,9 @@ bool genFile(const char* rawRoute, const char* genRoute){
             strFilePath = _STRING(rawRoute) + "\\" + FileInformation.cFileName;
 
             strExtension = FileInformation.cFileName;
-            if (strExtension.rfind('.') != _STRING_NPOS){
-                strExtension = _MOVE(strExtension.substr(strExtension.rfind('.') + 1));
+            auto lastPoint = strExtension.rfind('.');
+            if (lastPoint != _STRING_NPOS){
+                strExtension = _MOVE(strExtension.substr(lastPoint + 1));
             }
             else strExtension = "";
 

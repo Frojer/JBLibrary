@@ -153,6 +153,8 @@ namespace JBL{
             inline bool operator<(const customString& str)const{ return ins_strcmp(ins_str, str.ins_str) == -1; }
             inline bool operator==(const T* str)const{ return ins_strcmp(ins_str, str) == 0; }
             inline bool operator==(const customString& str)const{ return ins_strcmp(ins_str, str.ins_str) == 0; }
+            inline bool operator!=(const T* str)const{ return ins_strcmp(ins_str, str) != 0; }
+            inline bool operator!=(const customString& str)const{ return ins_strcmp(ins_str, str.ins_str) != 0; }
             inline bool operator>=(const T* str)const{ return ins_strcmp(ins_str, str) != -1; }
             inline bool operator>=(const customString& str)const{ return ins_strcmp(ins_str, str.ins_str) != -1; }
             inline bool operator<=(const T* str)const{ return ins_strcmp(ins_str, str) != 1; }
@@ -228,6 +230,15 @@ namespace JBL{
             /// @brief 문자열의 ind번째 원소를 반환합니다. 할당 영역 밖의 인덱스를 참조하는 경우, 예외가 발생합니다.
             /// @param ind 인덱스
             /// @return 해당 위치의 원소
+            inline T at(const _SIZE_T ind){
+#ifdef _DEBUG
+                if (ind >= ins_capacitySz)throw _ERROR_EXCEPTION(L"JBL::STRING::customString::at: out of range.");
+#endif
+                return ins_str[ind];
+            }
+            /// @brief 문자열의 ind번째 원소를 반환합니다. 할당 영역 밖의 인덱스를 참조하는 경우, 예외가 발생합니다.
+            /// @param ind 인덱스
+            /// @return 해당 위치의 원소
             inline T at(const _SIZE_T ind)const{
 #ifdef _DEBUG
                 if (ind >= ins_capacitySz)throw _ERROR_EXCEPTION(L"JBL::STRING::customString::at: out of range.");
@@ -239,6 +250,7 @@ namespace JBL{
             /// @param work 동작시킬 함수
             template<typename FUNC> void transform(FUNC work){
                 if (!ins_str)return;
+                if (!work)return;
 
                 auto i = decltype(ins_capacitySz){0};
                 T* p = ins_str;
@@ -267,14 +279,12 @@ namespace JBL{
             /// @param c 찾을 문자열
             /// @param pos 탐색 시작 위치
             /// @return 최초로 c가 발견되는 위치의 인덱스
-            _SIZE_T find(const T c, const _SIZE_T pos)const{
+            inline _SIZE_T find(const T c, const _SIZE_T pos)const{
                 if (!ins_str)return _STRING_NPOS;
 
-                _SIZE_T i = pos;
                 const T* p = ins_str + pos;
                 while (*p != (T)0){
-                    if (*p == c)return i;
-                    ++i;
+                    if (*p == c)return p - ins_str;
                     ++p;
                 }
                 return _STRING_NPOS;
@@ -289,17 +299,15 @@ namespace JBL{
             /// @param c 찾을 문자열
             /// @param pos 탐색 시작 위치
             /// @return 최초로 c가 발견되는 위치의 인덱스
-            _SIZE_T rfind(const T c, const _SIZE_T pos)const{
+            inline _SIZE_T rfind(const T c, const _SIZE_T pos)const{
                 if (!ins_str)return _STRING_NPOS;
 
-                _SIZE_T i = pos;
-                const T* p = ins_str + i;
-                while (i > 0){
-                    if (*p == c)return i;
+                const T* p = ins_str + pos;
+                while (p != ins_str){
+                    if (*p == c)return p - ins_str;
                     --p;
-                    --i;
                 }
-                if (*p == c)return i;
+                if (*p == c)return p - ins_str;
                 return _STRING_NPOS;
             }
             /// @brief 문자열을 끝부터 역방향으로 탐색하며 c가 발견되는 위치를 찾습니다.

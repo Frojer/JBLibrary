@@ -19,6 +19,10 @@ namespace JBL{
         /// @return 성공 여부
         bool resizeWindow();
     public:
+        /// @brief 윈도우를 화상에 띄웁니다.
+        /// @return 성공 여부
+        bool showWindow();
+    public:
         /// @brief 윈도우의 핸들을 반환합니다.
         /// @return 윈도우 핸들
         inline HWND getHWND()const{ return ins_hWnd; }

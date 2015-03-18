@@ -68,13 +68,16 @@ bool JBCORWindow::resizeWindow(){
     }
     _LOG_S(L"JBL::JBCORWindow::resizeWindow: succeeded to call MoveWindow.");
 
+    return true;
+}
+bool JBCORWindow::showWindow(){
     ShowWindow(ins_hWnd, SW_SHOW);
 
     if (!UpdateWindow(ins_hWnd)){
-        glb_infoMsg(IF_ERROR, L"JBL::JBCORWindow::resizeWindow: failed to call UpdateWindow.");
+        glb_infoMsg(IF_ERROR, L"JBL::JBCORWindow::showWindow: failed to call UpdateWindow.");
         return false;
     }
-    _LOG_S(L"JBL::JBCORWindow::resizeWindow: succeeded to call UpdateWindow.");
+    _LOG_S(L"JBL::JBCORWindow::showWindow: succeeded to call UpdateWindow.");
 
     return true;
 }
