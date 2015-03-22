@@ -14,11 +14,11 @@ namespace JBL{
             _FLOAT y;
             _FLOAT z;
         public:
-            customVector3() :x(), y(), z(){}
-            customVector3(const _FLOAT _x, const _FLOAT _y, const _FLOAT _z) :x(_x), y(_y), z(_z){}
-            customVector3(const customVector3& v) :x(v.x), y(v.y), z(v.z){}
+            customVector3() : x(), y(), z(){}
+            customVector3(const _FLOAT _x, const _FLOAT _y, const _FLOAT _z) : x(_x), y(_y), z(_z){}
+            customVector3(const customVector3& v) : x(v.x), y(v.y), z(v.z){}
         public:
-            inline customVector3& operator=(const customVector3& v){ x = v.x; y = v.y; z = v.z; }
+            inline customVector3& operator=(const customVector3& v){ x = v.x; y = v.y; z = v.z; return *this; }
         public:
             inline bool operator!()const{ return !x && !y && !z; }
             inline bool operator==(const customVector3& v)const{ return x == v.x && y == v.y && z == v.z; }
