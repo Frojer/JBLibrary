@@ -44,10 +44,7 @@ namespace JBL{
         public:
             /// @brief 현재 벡터를 정규화 시킵니다.
             /// @return 변환 결과
-            __forceinline customVector3& normalizeSelf(){
-                D3DXVec3Normalize((D3DXVECTOR3*)this, (const D3DXVECTOR3*)this);
-                return *this;
-            }
+            __forceinline customVector3& normalizeSelf(){ D3DXVec3Normalize((D3DXVECTOR3*)this, (const D3DXVECTOR3*)this); return *this; }
 
             /// @brief 두 벡터의 외적 연산 결과를 저장합니다.
             /// @param lhs 좌측 연산 대상
