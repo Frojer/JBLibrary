@@ -9,7 +9,7 @@ namespace JBL{
         /// @param a 비교 대상
         /// @param b 비교 대상
         /// @return 더 큰 값을 반환합니다.
-        template<typename T> extern inline T glb_max(const T a, const T b){ return a > b ? a : b; }
+        template<typename T> extern __forceinline T glb_max(const T a, const T b){ return a > b ? a : b; }
         /// @brief 셋 이상의 수 사이의 최대 값을 구합니다.
         /// @param a 비교 대상
         /// @param b 비교 대상
@@ -23,7 +23,7 @@ namespace JBL{
         /// @param a 비교 대상
         /// @param b 비교 대상
         /// @return 더 작은 값을 반환합니다.
-        template<typename T> extern inline T glb_min(const T a, const T b){ return a < b ? a : b; }
+        template<typename T> extern __forceinline T glb_min(const T a, const T b){ return a < b ? a : b; }
         /// @brief 셋 이상의 수 사이의 최소 값을 구합니다.
         /// @param a 비교 대상
         /// @param b 비교 대상

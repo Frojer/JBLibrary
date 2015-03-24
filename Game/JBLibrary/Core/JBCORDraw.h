@@ -21,11 +21,11 @@ namespace JBL{
         JBCORDraw(JBCORWindow* windowInst);
         virtual ~JBCORDraw();
     public:
-        inline void getVideoCardInfo(_WSTRING& name, _SIZE_T* ram){ name = ins_vCardName; if (ram)*ram = ins_vRamMemory; };
+        __forceinline void getVideoCardInfo(_WSTRING& name, _SIZE_T* ram){ name = ins_vCardName; if (ram)*ram = ins_vRamMemory; };
     public:
-        inline IDXGISwapChain* getSwapChain(){ return ins_swapChain; };
-        inline ID3D11Device* getDevice(){ return ins_device; };
-        inline ID3D11DeviceContext* getDeviceContext(){ return ins_deviceContext; };
+        __forceinline IDXGISwapChain* getSwapChain(){ return ins_swapChain; };
+        __forceinline ID3D11Device* getDevice(){ return ins_device; };
+        __forceinline ID3D11DeviceContext* getDeviceContext(){ return ins_deviceContext; };
     private:
         /// @brief 윈도우 클래스에 할당된 메세지 프로세스
         LRESULT ins_curProc(HWND, _UINT, WPARAM, LPARAM);

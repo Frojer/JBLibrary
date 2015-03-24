@@ -8,7 +8,7 @@
 #include "luainc.h"
 
 #ifdef LUAPP_HEADER_ONLY
-#define LUAPP_HO_INLINE inline
+#define LUAPP_HO_INLINE __forceinline
 #else	// LUAPP_HEADER_ONLY
 #define LUAPP_HO_INLINE
 #endif // LUAPP_HEADER_ONLY

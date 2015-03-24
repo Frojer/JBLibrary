@@ -25,7 +25,7 @@ namespace JBL{
     public:
         /// @brief 윈도우의 핸들을 반환합니다.
         /// @return 윈도우 핸들
-        inline HWND getHWND()const{ return ins_hWnd; }
+        __forceinline HWND getHWND()const{ return ins_hWnd; }
     private:
         /// @brief 윈도우 클래스에 할당된 메세지 프로세스
         LRESULT ins_curProc(HWND, _UINT, WPARAM, LPARAM);

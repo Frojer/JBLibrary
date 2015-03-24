@@ -13,7 +13,7 @@ namespace JBL{
         /// @param s 대상 문자열
         /// @param len 문자열 길이
         /// @return 해쉬 값
-        extern inline _DWORD glb_x65599Hash(const char* s, const _SIZE_T len){
+        extern __forceinline _DWORD glb_x65599Hash(const char* s, const _SIZE_T len){
             _DWORD h = 0;
 
             for (auto i = decltype(len){0}; i < len; ++i){
@@ -31,7 +31,7 @@ namespace JBL{
         /// @param s 원본 문자열
         /// @param len 원본 문자열의 길이
         /// @return 해쉬 값
-        extern inline _QWORD glb_boostHash(const char* s, const _SIZE_T len){
+        extern __forceinline _QWORD glb_boostHash(const char* s, const _SIZE_T len){
             _QWORD h = 0;
             _DWORD h2 = 0;
 

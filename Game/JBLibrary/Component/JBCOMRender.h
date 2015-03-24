@@ -12,6 +12,6 @@ namespace JBL{
         bool init();
         bool update();
     public:
-        inline _DWORD getComponentID()const{ return _HASH_X65599("JBCOMRender"); }
+        __forceinline _DWORD getComponentID()const{ return _HASH_X65599("JBCOMRender"); }
     };
 };

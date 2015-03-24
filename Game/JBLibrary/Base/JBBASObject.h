@@ -28,6 +28,6 @@ namespace JBL{
         JBBASComponent* getComponent(const _DWORD id);
         const JBBASComponent* getComponent(const _DWORD id)const;
     public:
-        inline _SIZE_T getID()const{ return ins_id; }
+        __forceinline _SIZE_T getID()const{ return ins_id; }
     };
 };

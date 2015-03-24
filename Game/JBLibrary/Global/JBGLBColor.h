@@ -47,22 +47,22 @@ namespace JBL{
         };
 
 
-        extern inline ARGB_8BIT glb_RGBA8_To_ARGB8(const RGBA_8BIT c);
-        extern inline RGBA_8BIT glb_ARGB8_To_RGBA8(const ARGB_8BIT c);
+        extern __forceinline ARGB_8BIT glb_RGBA8_To_ARGB8(const RGBA_8BIT c);
+        extern __forceinline RGBA_8BIT glb_ARGB8_To_RGBA8(const ARGB_8BIT c);
 
-        extern inline ARGB_32BIT glb_RGBA32_To_ARGB32(const RGBA_32BIT c);
-        extern inline RGBA_32BIT glb_ARGB32_To_RGBA32(const ARGB_32BIT c);
+        extern __forceinline ARGB_32BIT glb_RGBA32_To_ARGB32(const RGBA_32BIT c);
+        extern __forceinline RGBA_32BIT glb_ARGB32_To_RGBA32(const ARGB_32BIT c);
 
-        extern inline RGBA_32BIT glb_RGBA8_To_RGBA32(const RGBA_8BIT c);
-        extern inline ARGB_32BIT glb_RGBA8_To_ARGB32(const RGBA_8BIT c);
+        extern __forceinline RGBA_32BIT glb_RGBA8_To_RGBA32(const RGBA_8BIT c);
+        extern __forceinline ARGB_32BIT glb_RGBA8_To_ARGB32(const RGBA_8BIT c);
 
-        extern inline RGBA_32BIT glb_ARGB8_To_RGBA32(const ARGB_8BIT c);
-        extern inline ARGB_32BIT glb_ARGB8_To_ARGB32(const ARGB_8BIT c);
+        extern __forceinline RGBA_32BIT glb_ARGB8_To_RGBA32(const ARGB_8BIT c);
+        extern __forceinline ARGB_32BIT glb_ARGB8_To_ARGB32(const ARGB_8BIT c);
 
-        extern inline RGBA_8BIT glb_RGBA32_To_RGBA8(const RGBA_32BIT c);
-        extern inline ARGB_8BIT glb_RGBA32_To_ARGB8(const RGBA_32BIT c);
+        extern __forceinline RGBA_8BIT glb_RGBA32_To_RGBA8(const RGBA_32BIT c);
+        extern __forceinline ARGB_8BIT glb_RGBA32_To_ARGB8(const RGBA_32BIT c);
 
-        extern inline RGBA_8BIT glb_ARGB32_To_RGBA8(const ARGB_32BIT c);
-        extern inline ARGB_8BIT glb_ARGB32_To_ARGB8(const ARGB_32BIT c);
+        extern __forceinline RGBA_8BIT glb_ARGB32_To_RGBA8(const ARGB_32BIT c);
+        extern __forceinline ARGB_8BIT glb_ARGB32_To_ARGB8(const ARGB_32BIT c);
     };
 };

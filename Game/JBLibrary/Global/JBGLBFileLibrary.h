@@ -13,7 +13,7 @@ namespace JBL{
         /// @param raw 원본 바이트
         /// @param add 오프셋
         /// @return 결과 값
-        extern inline _BYTE glb_cycleByte(const _BYTE raw, const short add);
+        extern __forceinline _BYTE glb_cycleByte(const _BYTE raw, const short add);
 
 
         /// @brief 파일 라이브러리
@@ -38,15 +38,15 @@ namespace JBL{
             /// @brief 라이브러리를 초기화 합니다.
             /// @param file 파일 경로(와이드바이트)
             /// @return 읽기 성공 여부
-            inline bool init(const wchar_t* file){ return ins_init(file); }
+            __forceinline bool init(const wchar_t* file){ return ins_init(file); }
             /// @brief 라이브러리를 초기화 합니다.
             /// @param file 파일 경로(멀티바이트)
             /// @return 읽기 성공 여부
-            inline bool init(const char* file){ return ins_init(STRING::glb_ansiToWide(file).c_str()); }
+            __forceinline bool init(const char* file){ return ins_init(STRING::glb_ansiToWide(file).c_str()); }
         public:
             /// @brief 파일의 개수를 얻습니다.
             /// @return 파일 개수
-            inline _QWORD getCount()const{ return _QWORD(ins_fileData.size()); }
+            __forceinline _QWORD getCount()const{ return _QWORD(ins_fileData.size()); }
             /// @brief 해당 파일의 크기를 얻습니다.
             /// @param data 해당 파일의 해쉬 키
             /// @return 해당 파일의 크기
@@ -54,7 +54,7 @@ namespace JBL{
             
             /// @brief 현재 읽어들인 라이브러리의 경로를 반환합니다.
             /// @return 현재 라이브러리의 경로
-            inline _WSTRING getfileRoute()const{ return ins_fileRoute; }
+            __forceinline _WSTRING getfileRoute()const{ return ins_fileRoute; }
         public:
             /// @brief 라이브러리 파일의 커서를 해당 파일의 바이너리 시작 위치로 옮깁니다. 바이너리 데이터는 암호화 되어있는 상태입니다.
             /// @param data 해당 파일의 해쉬 키
@@ -69,10 +69,10 @@ namespace JBL{
         public:
             /// @brief 컨테이너의 시작 위치를 반환합니다.
             /// @return const속성의 반복자
-            inline fileLibraryMap::const_iterator getBegin()const{ return ins_fileData.cbegin(); }
+            __forceinline fileLibraryMap::const_iterator getBegin()const{ return ins_fileData.cbegin(); }
             /// @brief 컨테이너의 끝 위치를 반환합니다.
             /// @return const속성의 반복자
-            inline fileLibraryMap::const_iterator getEnd()const{ return ins_fileData.cend(); }
+            __forceinline fileLibraryMap::const_iterator getEnd()const{ return ins_fileData.cend(); }
         private:
             bool ins_init(const wchar_t* file);
             bool ins_loadFile();
@@ -102,19 +102,19 @@ namespace JBL{
             /// @brief 클래스를 초기화 합니다.
             /// @param file 파일 경로(와이드바이트)
             /// @return 읽기 성공 여부
-            inline bool init(const wchar_t* file){ return ins_init(file); }
+            __forceinline bool init(const wchar_t* file){ return ins_init(file); }
             /// @brief 클래스를 초기화 합니다.
             /// @param file 파일 경로(멀티바이트)
             /// @return 읽기 성공 여부
-            inline bool init(const char* file){ return ins_init(STRING::glb_ansiToWide(file).c_str()); }
+            __forceinline bool init(const char* file){ return ins_init(STRING::glb_ansiToWide(file).c_str()); }
         public:
             /// @brief 라이브러리의 암호화 코드를 얻습니다.
             /// @return 현재 라이브러리의 암호화 코드
-            inline _BYTE getBlendCode()const{ return ins_blendCode; };
+            __forceinline _BYTE getBlendCode()const{ return ins_blendCode; };
             /// @brief 해당 파일의 정보를 얻습니다.
             /// @param key 해당 파일의 해쉬 키
             /// @return 해당 파일의 정보 값
-            inline FILETIME getData(const HashSize key)const{ return ins_fileData.at(key); };
+            __forceinline FILETIME getData(const HashSize key)const{ return ins_fileData.at(key); };
         private:
             bool ins_init(const wchar_t* file);
             bool ins_loadFile();

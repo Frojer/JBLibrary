@@ -136,7 +136,7 @@ namespace JBL{
             /// @brief 문자열의 실제 크기를 정해진 값으로 설정합니다.
             /// @param sz 할당 크기
             /// @return 동작 성공 여부
-            inline bool ins_sizing(const _SIZE_T& sz){
+            __forceinline bool ins_sizing(const _SIZE_T& sz){
                 if (sz > ins_capacitySz){
                     _FREE(ins_str);
                     ins_str = _ALLOC<T>(sz);
@@ -147,39 +147,39 @@ namespace JBL{
                 return true;
             }
         public:
-            inline bool operator>(const T* str)const{ return ins_strcmp(ins_str, str) == 1; }
-            inline bool operator>(const customString& str)const{ return ins_strcmp(ins_str, str.ins_str) == 1; }
-            inline bool operator<(const T* str)const{ return ins_strcmp(ins_str, str) == -1; }
-            inline bool operator<(const customString& str)const{ return ins_strcmp(ins_str, str.ins_str) == -1; }
-            inline bool operator==(const T* str)const{ return ins_strcmp(ins_str, str) == 0; }
-            inline bool operator==(const customString& str)const{ return ins_strcmp(ins_str, str.ins_str) == 0; }
-            inline bool operator!=(const T* str)const{ return ins_strcmp(ins_str, str) != 0; }
-            inline bool operator!=(const customString& str)const{ return ins_strcmp(ins_str, str.ins_str) != 0; }
-            inline bool operator>=(const T* str)const{ return ins_strcmp(ins_str, str) != -1; }
-            inline bool operator>=(const customString& str)const{ return ins_strcmp(ins_str, str.ins_str) != -1; }
-            inline bool operator<=(const T* str)const{ return ins_strcmp(ins_str, str) != 1; }
-            inline bool operator<=(const customString& str)const{ return ins_strcmp(ins_str, str.ins_str) != 1; }
+            __forceinline bool operator>(const T* str)const{ return ins_strcmp(ins_str, str) == 1; }
+            __forceinline bool operator>(const customString& str)const{ return ins_strcmp(ins_str, str.ins_str) == 1; }
+            __forceinline bool operator<(const T* str)const{ return ins_strcmp(ins_str, str) == -1; }
+            __forceinline bool operator<(const customString& str)const{ return ins_strcmp(ins_str, str.ins_str) == -1; }
+            __forceinline bool operator==(const T* str)const{ return ins_strcmp(ins_str, str) == 0; }
+            __forceinline bool operator==(const customString& str)const{ return ins_strcmp(ins_str, str.ins_str) == 0; }
+            __forceinline bool operator!=(const T* str)const{ return ins_strcmp(ins_str, str) != 0; }
+            __forceinline bool operator!=(const customString& str)const{ return ins_strcmp(ins_str, str.ins_str) != 0; }
+            __forceinline bool operator>=(const T* str)const{ return ins_strcmp(ins_str, str) != -1; }
+            __forceinline bool operator>=(const customString& str)const{ return ins_strcmp(ins_str, str.ins_str) != -1; }
+            __forceinline bool operator<=(const T* str)const{ return ins_strcmp(ins_str, str) != 1; }
+            __forceinline bool operator<=(const customString& str)const{ return ins_strcmp(ins_str, str.ins_str) != 1; }
         public:
             /// @brief 문자열의 길이를 반환합니다.
             /// @return 길이
-            inline const _SIZE_T length()const{ return ins_length; }
+            __forceinline const _SIZE_T length()const{ return ins_length; }
             /// @brief 전체 할당된 크기를 반환합니다.
             /// @return 크기
-            inline const _SIZE_T capacitySize()const{ return ins_capacitySz; }
+            __forceinline const _SIZE_T capacitySize()const{ return ins_capacitySz; }
             /// @brief 문자열의 포인터형을 반환합니다.
             /// @return 문자열
-            inline const T* c_str()const{ return ins_str; }
+            __forceinline const T* c_str()const{ return ins_str; }
         public:
             /// @brief 문자열 끝에 원소를 추가합니다.
             /// @param c 추가할 문자
-            inline void push_back(const T c){
+            __forceinline void push_back(const T c){
                 if (ins_length + 1 <= ins_capacitySz){ ins_str[ins_length] = c; ins_str[++ins_length] = (T)0; }
 #ifdef _DEBUG
                 else throw _ERROR_EXCEPTION(L"JBL::STRING::customString::push_back: out of index.");
 #endif
             }
             /// @brief 문자열 끝의 원소 하나를 제거합니다.
-            inline void pop_back(){
+            __forceinline void pop_back(){
                 if (ins_length){ ins_str[--ins_length] = (T)0; }
 #ifdef _DEBUG
                 else throw _ERROR_EXCEPTION(L"JBL::STRING::customString::pop_back: out of index.");
@@ -187,7 +187,7 @@ namespace JBL{
             }
         public:
             /// @brief 문자열을 NULL문자로 초기화 합니다.
-            inline void clear(){ ins_length = 0; ins_strset(ins_str, (T)0, ins_capacitySz); }
+            __forceinline void clear(){ ins_length = 0; ins_strset(ins_str, (T)0, ins_capacitySz); }
             /// @brief 문자열의 실제 크기를 설정합니다. 현재 할당받은 크기보다 큰 경우에만 동작합니다.
             /// @param n 새로 할당할 크기
             /// @return 동작 성공 여부
@@ -215,22 +215,22 @@ namespace JBL{
                 return false;
             }
             /// @brief 문자열의 길이를 다시 구합니다.
-            inline void relength(){
+            __forceinline void relength(){
                 ins_length = ins_strlen(ins_str);
             }
         public:
             /// @brief 문자열의 ind번째 원소를 반환합니다.
             /// @param ind 인덱스
             /// @return 해당 위치의 원소
-            inline T& operator[](const _SIZE_T ind){ return ins_str[ind]; }
+            __forceinline T& operator[](const _SIZE_T ind){ return ins_str[ind]; }
             /// @brief 문자열의 ind번째 원소를 반환합니다.
             /// @param ind 인덱스
             /// @return 해당 위치의 원소
-            inline T operator[](const _SIZE_T ind)const{ return ins_str[ind]; }
+            __forceinline T operator[](const _SIZE_T ind)const{ return ins_str[ind]; }
             /// @brief 문자열의 ind번째 원소를 반환합니다. 할당 영역 밖의 인덱스를 참조하는 경우, 예외가 발생합니다.
             /// @param ind 인덱스
             /// @return 해당 위치의 원소
-            inline T at(const _SIZE_T ind){
+            __forceinline T at(const _SIZE_T ind){
 #ifdef _DEBUG
                 if (ind >= ins_capacitySz)throw _ERROR_EXCEPTION(L"JBL::STRING::customString::at: out of range.");
 #endif
@@ -239,7 +239,7 @@ namespace JBL{
             /// @brief 문자열의 ind번째 원소를 반환합니다. 할당 영역 밖의 인덱스를 참조하는 경우, 예외가 발생합니다.
             /// @param ind 인덱스
             /// @return 해당 위치의 원소
-            inline T at(const _SIZE_T ind)const{
+            __forceinline T at(const _SIZE_T ind)const{
 #ifdef _DEBUG
                 if (ind >= ins_capacitySz)throw _ERROR_EXCEPTION(L"JBL::STRING::customString::at: out of range.");
 #endif
@@ -279,7 +279,7 @@ namespace JBL{
             /// @param c 찾을 문자열
             /// @param pos 탐색 시작 위치
             /// @return 최초로 c가 발견되는 위치의 인덱스
-            inline _SIZE_T find(const T c, const _SIZE_T pos)const{
+            __forceinline _SIZE_T find(const T c, const _SIZE_T pos)const{
                 if (!ins_str)return _STRING_NPOS;
 
                 const T* p = ins_str + pos;
@@ -293,13 +293,13 @@ namespace JBL{
             /// @param c 찾을 문자열
             /// @param pos 탐색 시작 위치
             /// @return 최초로 c가 발견되는 위치의 인덱스
-            inline _SIZE_T find(const T c)const{ return find(c, 0); }
+            __forceinline _SIZE_T find(const T c)const{ return find(c, 0); }
 
             /// @brief 문자열을 pos위치부터 역방향으로 탐색하며 c가 발견되는 위치를 찾습니다.
             /// @param c 찾을 문자열
             /// @param pos 탐색 시작 위치
             /// @return 최초로 c가 발견되는 위치의 인덱스
-            inline _SIZE_T rfind(const T c, const _SIZE_T pos)const{
+            __forceinline _SIZE_T rfind(const T c, const _SIZE_T pos)const{
                 if (!ins_str)return _STRING_NPOS;
 
                 const T* p = ins_str + pos;
@@ -314,7 +314,7 @@ namespace JBL{
             /// @param c 찾을 문자열
             /// @param pos 탐색 시작 위치
             /// @return 최초로 c가 발견되는 위치의 인덱스
-            inline _SIZE_T rfind(const T c)const{ if (!ins_length)return _STRING_NPOS; return rfind(c, ins_length - 1); }
+            __forceinline _SIZE_T rfind(const T c)const{ if (!ins_length)return _STRING_NPOS; return rfind(c, ins_length - 1); }
         public:
             /// @brief 문자열의 begin인덱스부터 len만큼까지를 반환합니다.
             /// @param begin 시작 위치
@@ -553,9 +553,9 @@ namespace JBL{
                 return *this;
             }
         public:
-            inline customString operator+(const T c)const{ return customString<T>(*this) += c; }
-            inline customString operator+(const T* str)const{ return customString<T>(*this) += str; }
-            inline customString operator+(const customString& str)const{ return customString<T>(*this) += str; }
+            __forceinline customString operator+(const T c)const{ return customString<T>(*this) += c; }
+            __forceinline customString operator+(const T* str)const{ return customString<T>(*this) += str; }
+            __forceinline customString operator+(const customString& str)const{ return customString<T>(*this) += str; }
         };
     };
 };
