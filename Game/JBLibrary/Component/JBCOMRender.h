@@ -7,10 +7,10 @@ namespace JBL{
     class JBCOMRender : public JBBASComponent{
     public:
         JBCOMRender();
-        ~JBCOMRender();
+        virtual ~JBCOMRender();
     public:
-        bool init();
-        bool update();
+        virtual bool init();
+        virtual bool update();
     public:
         __forceinline _DWORD getComponentID()const{ return _HASH_X65599("JBCOMRender"); }
     };

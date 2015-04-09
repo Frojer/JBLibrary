@@ -7,7 +7,7 @@ using namespace JBL::SYSTEM;
 JBCORWindow::JBCORWindow(const HINSTANCE& hInst) : JBBASWndProc(){
     ins_hInst = hInst;
 
-    WNDCLASSEX cls;
+    WNDCLASSEX cls = { 0 };
     cls.cbSize = sizeof WNDCLASSEX;
     cls.style = CS_HREDRAW | CS_VREDRAW;
     cls.lpfnWndProc = ins_firstProc;

@@ -31,8 +31,7 @@ namespace JBL{
             OBJ* _new = nullptr;
             try{ _new = new OBJ(_FORWARD<T>(argv)...); }
             catch (...){
-                delete _new;
-                _new = nullptr;
+                delete _new; _new = nullptr;
             }
             return _new;
         }
@@ -46,8 +45,8 @@ namespace JBL{
             if (_new){
                 try{ new (_new)OBJ(_FORWARD<T>(argv)...); }
                 catch (...){
-                    _aligned_free(_new);
-                    _new = nullptr;
+                    _new->~OBJ();
+                    _aligned_free(_new); _new = nullptr;
                 }
             }
             return _new;
@@ -62,9 +61,8 @@ namespace JBL{
         /// @brief 사용자 지정 얼라이먼트로 생성한 객체를 소멸합니다.
         /// @param tar 소멸할 대상
         /// @param argv 소멸자에 따른 인자
-        template<typename OBJ, typename... T> extern __forceinline void __DELETE_ALIGNED(OBJ* tar, T&&... argv){
-            tar->~OBJ(_FORWARD<T>(argv)...);
-            _aligned_free(tar);
+        template<typename OBJ> extern __forceinline void __DELETE_ALIGNED(OBJ* tar){
+            tar->~OBJ(); _aligned_free(tar);
         }
     };
 };
