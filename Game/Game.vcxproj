@@ -201,7 +201,6 @@
     <ClInclude Include="JBLibrary\Global\JBGLBColor.h" />
     <ClInclude Include="JBLibrary\Global\JBGLBCustomFloat.hpp" />
     <ClInclude Include="JBLibrary\Global\JBGLBCustomString.hpp" />
-    <ClInclude Include="JBLibrary\Global\JBGLBCustomVector3.hpp" />
     <ClInclude Include="JBLibrary\Global\JBGLBFileLibrary.h" />
     <ClInclude Include="JBLibrary\Global\JBGLBHash.hpp" />
     <ClInclude Include="JBLibrary\Global\JBGLBIO.h" />

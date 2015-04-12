@@ -43,7 +43,7 @@ namespace JBL{
             __forceinline operator float()const{ return val.f; };
             __forceinline operator float&(){ return val.f; };
         public:
-            __forceinline bool operator!()const{ return !innerFloat(val.opr << 1 >> 1).opr; }
+            __forceinline bool operator!()const{ return ins_isEqual(0.f); }
             __forceinline bool operator==(const customFloat& f)const{ return ins_isEqual(f.val.f); }
             __forceinline bool operator==(const float& f)const{ return ins_isEqual(f); }
             __forceinline bool operator!=(const customFloat& f)const{ return !ins_isEqual(f.val.f); }

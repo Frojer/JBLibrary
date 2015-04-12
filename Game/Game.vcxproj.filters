@@ -151,9 +151,6 @@
     <ClInclude Include="JBLibrary\Component\JBCOMRender.h">
       <Filter>JBLibrary\Component</Filter>
     </ClInclude>
-    <ClInclude Include="JBLibrary\Global\JBGLBCustomVector3.hpp">
-      <Filter>JBLibrary\Global</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
