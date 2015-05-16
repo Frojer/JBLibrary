@@ -1,7 +1,6 @@
 ﻿#pragma once
 
 #include"JBGLBCustomFloat.hpp"
-#include"JBGLBCustomVector3.hpp"
 
 namespace JBL{
     namespace MATH{
